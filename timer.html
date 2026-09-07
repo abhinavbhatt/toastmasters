@@ -257,141 +257,152 @@
       background: var(--signal-red);
     }
 
-    /* =====================================================
-       CONTROLS
-       ===================================================== */
+  /* =====================================================
+   MINIMAL CONTROLS
+   ===================================================== */
 
-    .controls {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 8px;
+.controls {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 8px;
+  margin-top: 10px;
+}
 
-      margin-top: 10px;
-    }
+button.control {
+  min-height: 48px;
+  padding: 10px 8px;
 
-    button.control {
-      min-height: 52px;
-      padding: 12px 7px;
+  border: 1px solid rgba(0, 0, 0, 0.14);
+  border-radius: 4px;
 
-      border: 0;
+  background: rgba(255, 255, 255, 0.82);
+  color: var(--loyal-blue);
 
-      background: var(--loyal-blue);
-      color: var(--white);
+  font: inherit;
+  font-size: 15px;
+  font-weight: 700;
 
-      font: inherit;
-      font-size: 15px;
-      font-weight: 700;
+  cursor: pointer;
+  touch-action: manipulation;
 
-      cursor: pointer;
-      touch-action: manipulation;
-    }
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    opacity 0.2s ease;
+}
 
-    button.maroon {
-      background: var(--true-maroon);
-    }
+button.control:hover {
+  background: rgba(255, 255, 255, 0.94);
+}
 
-    button.gray {
-      background: var(--cool-gray);
-      color: var(--black);
-    }
+button.control:active {
+  background: rgba(255, 255, 255, 1);
+}
 
-    .adjust {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 8px;
+button.maroon {
+  background: rgba(255, 255, 255, 0.82);
+  color: var(--true-maroon);
+}
 
-      margin-top: 8px;
-    }
+button.gray {
+  background: rgba(255, 255, 255, 0.68);
+  color: var(--black);
+}
 
-    .adjust button {
-      min-height: 48px;
 
-      border: 2px solid var(--cool-gray);
+/* =====================================================
+   ADJUSTMENT BUTTONS
+   ===================================================== */
 
-      background: var(--white);
-      color: var(--black);
+.adjust {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 8px;
+}
 
-      font: inherit;
-      font-weight: 700;
+.adjust button {
+  min-height: 42px;
+  padding: 9px;
 
-      cursor: pointer;
-      touch-action: manipulation;
-    }
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
 
-    /* =====================================================
-       CUSTOM
-       ===================================================== */
+  background: rgba(255, 255, 255, 0.62);
+  color: var(--black);
 
-    .custom {
-      margin-top: 20px;
-      padding-top: 18px;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
 
-      border-top: 1px solid #ddd;
-    }
+  cursor: pointer;
+  touch-action: manipulation;
 
-    .custom h2 {
-      margin: 0 0 10px;
+  transition:
+    background-color 0.2s ease,
+    opacity 0.2s ease;
+}
 
-      color: var(--loyal-blue);
+.adjust button:hover {
+  background: rgba(255, 255, 255, 0.78);
+}
 
-      font-size: 20px;
-    }
+.adjust button:active {
+  background: rgba(255, 255, 255, 0.92);
+}
 
-    .custom-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr) auto;
-      gap: 8px;
 
-      align-items: end;
-    }
+/* =====================================================
+   SIGNAL STATES
+   Keep controls subtle but readable
+   ===================================================== */
 
-    .field label {
-      display: block;
+body.state-green .controls button,
+body.state-yellow .controls button,
+body.state-red .controls button,
+body.state-overtime .controls button,
+body.state-green .adjust button,
+body.state-yellow .adjust button,
+body.state-red .adjust button,
+body.state-overtime .adjust button {
+  background: rgba(255, 255, 255, 0.82);
+  color: var(--black);
+}
 
-      margin-bottom: 4px;
+body.state-green .controls button:first-child,
+body.state-yellow .controls button:first-child,
+body.state-red .controls button:first-child,
+body.state-overtime .controls button:first-child {
+  font-weight: 800;
+}
 
-      font-size: 13px;
-      font-weight: 700;
-    }
 
-    .field input {
-      width: 100%;
+/* =====================================================
+   MOBILE
+   ===================================================== */
 
-      padding: 10px;
+@media (max-width: 650px) {
 
-      border: 2px solid var(--cool-gray);
+  .controls {
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 6px;
+  }
 
-      font: inherit;
-      font-size: 16px;
-    }
+  button.control {
+    min-height: 44px;
+    padding: 8px 5px;
+    font-size: 14px;
+  }
 
-    .apply {
-      min-height: 45px;
+  .adjust {
+    gap: 6px;
+  }
 
-      padding: 10px 15px;
-
-      border: 0;
-
-      background: var(--true-maroon);
-      color: var(--white);
-
-      font: inherit;
-      font-weight: 700;
-
-      cursor: pointer;
-    }
-
-    .footer {
-      padding: 12px;
-
-      background: var(--loyal-blue);
-      color: var(--white);
-
-      text-align: center;
-
-      font-size: 13px;
-    }
-
+  .adjust button {
+    min-height: 38px;
+    font-size: 13px;
+  }
+}
     /* =====================================================
        WHOLE PAGE SIGNAL STATES
        ===================================================== */
