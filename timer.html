@@ -13,10 +13,6 @@
 
   <style>
 
-    /* =====================================================
-       TOASTMASTERS COLOUR PALETTE
-       ===================================================== */
-
     :root {
       --loyal-blue: #004165;
       --true-maroon: #772432;
@@ -25,18 +21,12 @@
       --white: #FFFFFF;
       --black: #222222;
 
-      /* Timing signal colours */
       --signal-green: #3F7D20;
       --signal-yellow: #D99A00;
       --signal-red: #C62828;
 
       --light-background: #F4F5F5;
     }
-
-
-    /* =====================================================
-       RESET
-       ===================================================== */
 
     * {
       box-sizing: border-box;
@@ -49,11 +39,6 @@
       min-height: 100%;
       margin: 0;
     }
-
-
-    /* =====================================================
-       BASE PAGE
-       ===================================================== */
 
     body {
       font-family:
@@ -70,7 +55,6 @@
         color 0.3s ease;
     }
 
-
     /* =====================================================
        APP
        ===================================================== */
@@ -78,7 +62,6 @@
     .app {
       width: 100%;
       min-height: 100vh;
-
       max-width: 900px;
 
       margin: 0 auto;
@@ -86,8 +69,7 @@
       background: var(--white);
 
       transition:
-        background-color 0.3s ease,
-        color 0.3s ease;
+        background-color 0.3s ease;
     }
 
 
@@ -109,17 +91,15 @@
 
       font-size: 20px;
       line-height: 1.1;
-
       font-weight: 700;
-      letter-spacing: 0.01em;
     }
 
     .header p {
       margin: 2px 0 0;
 
-      font-size: 12px;
-
       color: #666666;
+
+      font-size: 12px;
     }
 
 
@@ -129,14 +109,12 @@
 
     .main {
       width: 100%;
-
       padding: 7px 10px 12px;
 
       background: var(--white);
 
       transition:
-        background-color 0.3s ease,
-        color 0.3s ease;
+        background-color 0.3s ease;
     }
 
 
@@ -148,8 +126,6 @@
       display: flex;
 
       gap: 8px;
-
-      width: 100%;
 
       margin-bottom: 10px;
 
@@ -174,28 +150,19 @@
       padding: 9px 15px;
 
       border: 0;
-
       border-radius: 999px;
 
       background: #E7ECEF;
-
       color: var(--loyal-blue);
 
       font: inherit;
-
       font-size: 14px;
       font-weight: 700;
 
       white-space: nowrap;
 
       cursor: pointer;
-
       touch-action: manipulation;
-
-      transition:
-        background-color 0.2s ease,
-        color 0.2s ease,
-        opacity 0.2s ease;
     }
 
     .preset.active {
@@ -213,7 +180,6 @@
       margin-left: 3px;
 
       font-size: 13px;
-
       font-weight: 600;
     }
 
@@ -232,15 +198,12 @@
       padding: 11px 12px;
 
       border: 1px solid var(--cool-gray);
-
       border-radius: 4px;
 
       background: var(--white);
-
       color: var(--black);
 
       font: inherit;
-
       font-size: 16px;
 
       outline: none;
@@ -261,7 +224,6 @@
       padding: 18px 8px 22px;
 
       border: 5px solid var(--loyal-blue);
-
       border-radius: 6px;
 
       background: var(--white);
@@ -270,12 +232,8 @@
 
       transition:
         background-color 0.3s ease,
-        border-color 0.3s ease,
-        color 0.3s ease;
+        border-color 0.3s ease;
     }
-
-
-    /* Speaker */
 
     .speaker-name {
       min-height: 27px;
@@ -288,9 +246,6 @@
       transition: color 0.3s ease;
     }
 
-
-    /* Signal */
-
     .signal {
       min-height: 28px;
 
@@ -302,14 +257,10 @@
       font-weight: 800;
 
       letter-spacing: 0.1em;
-
       text-transform: uppercase;
 
       transition: color 0.3s ease;
     }
-
-
-    /* BIG STOPWATCH */
 
     .timer {
       margin: 10px 0;
@@ -328,9 +279,6 @@
 
       transition: color 0.3s ease;
     }
-
-
-    /* Timing information */
 
     .timing-info {
       min-height: 25px;
@@ -362,14 +310,9 @@
       height: 46px;
 
       border: 3px solid currentColor;
-
       border-radius: 50%;
 
       opacity: 0.16;
-
-      transition:
-        opacity 0.2s ease,
-        background-color 0.2s ease;
     }
 
     .light.green {
@@ -402,7 +345,7 @@
 
 
     /* =====================================================
-       CONTROL BUTTONS
+       MINIMAL CONTROLS
        ===================================================== */
 
     .controls {
@@ -425,7 +368,6 @@
       padding: 8px 6px;
 
       border: 1px solid rgba(0, 0, 0, 0.12);
-
       border-radius: 4px;
 
       background: rgba(255, 255, 255, 0.82);
@@ -433,23 +375,15 @@
       color: var(--loyal-blue);
 
       font: inherit;
-
       font-size: 14px;
       font-weight: 700;
 
       cursor: pointer;
-
       touch-action: manipulation;
-
-      transition:
-        background-color 0.2s ease,
-        opacity 0.2s ease;
     }
 
     button.control:active {
-      background: rgba(255, 255, 255, 0.98);
-
-      opacity: 0.85;
+      opacity: 0.8;
     }
 
     button.maroon {
@@ -457,14 +391,13 @@
     }
 
     button.gray {
-      color: var(--black);
-
       background: rgba(255, 255, 255, 0.65);
+      color: var(--black);
     }
 
 
     /* =====================================================
-       +/- CONTROLS
+       TIME ADJUSTMENT
        ===================================================== */
 
     .adjust {
@@ -483,7 +416,6 @@
       padding: 8px;
 
       border: 1px solid rgba(0, 0, 0, 0.10);
-
       border-radius: 4px;
 
       background: rgba(255, 255, 255, 0.60);
@@ -491,23 +423,20 @@
       color: var(--black);
 
       font: inherit;
-
       font-size: 13px;
       font-weight: 600;
 
       cursor: pointer;
-
       touch-action: manipulation;
     }
 
 
     /* =====================================================
-       CUSTOM TIMER
+       CUSTOM TIMING
        ===================================================== */
 
     .custom {
       margin-top: 19px;
-
       padding-top: 17px;
 
       border-top: 1px solid #dddddd;
@@ -550,11 +479,9 @@
       padding: 10px;
 
       border: 1px solid var(--cool-gray);
-
       border-radius: 4px;
 
       font: inherit;
-
       font-size: 16px;
     }
 
@@ -564,19 +491,15 @@
       padding: 10px 15px;
 
       border: 0;
-
       border-radius: 4px;
 
       background: var(--true-maroon);
-
       color: var(--white);
 
       font: inherit;
-
       font-weight: 700;
 
       cursor: pointer;
-
       touch-action: manipulation;
     }
 
@@ -589,7 +512,6 @@
       padding: 10px;
 
       background: var(--loyal-blue);
-
       color: var(--white);
 
       text-align: center;
@@ -607,13 +529,12 @@
     }
 
     body.state-green .app,
-    body.state-green .main {
+    body.state-green .main,
+    body.state-green .timer-card {
       background: var(--signal-green);
     }
 
     body.state-green .timer-card {
-      background: var(--signal-green);
-
       border-color: var(--white);
     }
 
@@ -634,13 +555,12 @@
     }
 
     body.state-yellow .app,
-    body.state-yellow .main {
+    body.state-yellow .main,
+    body.state-yellow .timer-card {
       background: var(--signal-yellow);
     }
 
     body.state-yellow .timer-card {
-      background: var(--signal-yellow);
-
       border-color: var(--white);
     }
 
@@ -661,13 +581,12 @@
     }
 
     body.state-red .app,
-    body.state-red .main {
+    body.state-red .main,
+    body.state-red .timer-card {
       background: var(--signal-red);
     }
 
     body.state-red .timer-card {
-      background: var(--signal-red);
-
       border-color: var(--white);
     }
 
@@ -688,13 +607,12 @@
     }
 
     body.state-overtime .app,
-    body.state-overtime .main {
+    body.state-overtime .main,
+    body.state-overtime .timer-card {
       background: var(--true-maroon);
     }
 
     body.state-overtime .timer-card {
-      background: var(--true-maroon);
-
       border-color: var(--white);
     }
 
@@ -707,7 +625,7 @@
 
 
     /* =====================================================
-       KEEP CONTROLS SUBTLE ON SIGNAL BACKGROUNDS
+       SUBTLE CONTROLS ON COLOURED BACKGROUND
        ===================================================== */
 
     body.state-green .controls button,
@@ -719,35 +637,41 @@
     body.state-red .adjust button,
     body.state-overtime .adjust button {
       background: rgba(255, 255, 255, 0.82);
-
       color: var(--black);
     }
 
 
     /* =====================================================
-       FULLSCREEN MEETING MODE
+       MEETING MODE
+       
+       This is NOT dependent on browser fullscreen.
+       It works inside an iframe.
        ===================================================== */
 
-    body.fullscreen {
+    body.meeting-mode {
       padding: 0;
+
+      min-height: 100vh;
 
       overflow: hidden;
     }
 
-    body.fullscreen .header,
-    body.fullscreen .presets,
-    body.fullscreen .speaker,
-    body.fullscreen .controls,
-    body.fullscreen .adjust,
-    body.fullscreen .custom,
-    body.fullscreen .footer,
-    body.fullscreen .timing-info,
-    body.fullscreen .lights {
+
+    body.meeting-mode .header,
+    body.meeting-mode .presets,
+    body.meeting-mode .speaker,
+    body.meeting-mode .controls,
+    body.meeting-mode .adjust,
+    body.meeting-mode .custom,
+    body.meeting-mode .footer,
+    body.meeting-mode .timing-info,
+    body.meeting-mode .lights {
       display: none;
     }
 
-    body.fullscreen .app,
-    body.fullscreen .main {
+
+    body.meeting-mode .app,
+    body.meeting-mode .main {
       width: 100%;
 
       max-width: none;
@@ -759,12 +683,13 @@
       background: transparent;
     }
 
-    body.fullscreen .timer-card {
+
+    body.meeting-mode .timer-card {
       width: 100%;
 
       min-height: 100vh;
 
-      padding: 20px;
+      padding: 15px;
 
       border: 0;
 
@@ -781,27 +706,30 @@
       justify-content: center;
     }
 
-    body.fullscreen .speaker-name {
+
+    body.meeting-mode .speaker-name {
       color: var(--white);
 
       font-size:
-        clamp(22px, 6vw, 42px);
+        clamp(22px, 6vw, 44px);
     }
 
-    body.fullscreen .signal {
+
+    body.meeting-mode .signal {
       color: var(--white);
 
       font-size:
-        clamp(21px, 6vw, 40px);
+        clamp(21px, 6vw, 42px);
 
       letter-spacing: 0.12em;
     }
 
-    body.fullscreen .timer {
+
+    body.meeting-mode .timer {
       color: var(--white);
 
       font-size:
-        clamp(125px, 32vw, 360px);
+        clamp(120px, 31vw, 360px);
 
       line-height: 0.82;
 
@@ -810,51 +738,46 @@
 
 
     /* =====================================================
-       FULLSCREEN SIGNAL BACKGROUNDS
+       MEETING MODE COLOUR STATES
        ===================================================== */
 
-    body.fullscreen.state-green,
-    body.fullscreen.state-green .app,
-    body.fullscreen.state-green .main,
-    body.fullscreen.state-green .timer-card {
+    body.meeting-mode.state-green,
+    body.meeting-mode.state-green .app,
+    body.meeting-mode.state-green .main,
+    body.meeting-mode.state-green .timer-card {
       background: var(--signal-green);
     }
 
-    body.fullscreen.state-yellow,
-    body.fullscreen.state-yellow .app,
-    body.fullscreen.state-yellow .main,
-    body.fullscreen.state-yellow .timer-card {
+
+    body.meeting-mode.state-yellow,
+    body.meeting-mode.state-yellow .app,
+    body.meeting-mode.state-yellow .main,
+    body.meeting-mode.state-yellow .timer-card {
       background: var(--signal-yellow);
     }
 
-    body.fullscreen.state-red,
-    body.fullscreen.state-red .app,
-    body.fullscreen.state-red .main,
-    body.fullscreen.state-red .timer-card {
+
+    body.meeting-mode.state-red,
+    body.meeting-mode.state-red .app,
+    body.meeting-mode.state-red .main,
+    body.meeting-mode.state-red .timer-card {
       background: var(--signal-red);
     }
 
-    body.fullscreen.state-overtime,
-    body.fullscreen.state-overtime .app,
-    body.fullscreen.state-overtime .main,
-    body.fullscreen.state-overtime .timer-card {
+
+    body.meeting-mode.state-overtime,
+    body.meeting-mode.state-overtime .app,
+    body.meeting-mode.state-overtime .main,
+    body.meeting-mode.state-overtime .timer-card {
       background: var(--true-maroon);
     }
 
 
     /* =====================================================
-       TABLET / MOBILE
+       MOBILE
        ===================================================== */
 
     @media (max-width: 650px) {
-
-      .controls {
-        grid-template-columns:
-          1.4fr
-          1fr
-          1fr
-          1fr;
-      }
 
       .custom-grid {
         grid-template-columns:
@@ -867,10 +790,6 @@
       }
     }
 
-
-    /* =====================================================
-       SMALL PHONE
-       ===================================================== */
 
     @media (max-width: 400px) {
 
@@ -928,708 +847,613 @@
 
 <body>
 
-  <div class="app">
+<div class="app">
+
+  <!-- ===================================================
+       HEADER
+       =================================================== -->
+
+  <header class="header">
+
+    <h1>
+      Meeting Timer
+    </h1>
+
+    <p>
+      Jaipur Speakers Toastmasters Club
+    </p>
+
+  </header>
+
+
+  <main class="main">
+
+    <!-- =================================================
+         PRESETS
+         ================================================= -->
+
+    <div class="presets">
+
+      <button
+        class="preset active"
+        data-green="60"
+        data-yellow="90"
+        data-red="120">
+
+        Table Topics
+        <span>(1–2m)</span>
+
+      </button>
+
+
+      <button
+        class="preset"
+        data-green="240"
+        data-yellow="300"
+        data-red="360">
+
+        Icebreaker
+        <span>(4–6m)</span>
+
+      </button>
+
+
+      <button
+        class="preset"
+        data-green="300"
+        data-yellow="360"
+        data-red="420">
+
+        Standard Speech
+        <span>(5–7m)</span>
+
+      </button>
+
+
+      <button
+        class="preset"
+        data-green="120"
+        data-yellow="150"
+        data-red="180">
+
+        Evaluation
+        <span>(2–3m)</span>
+
+      </button>
+
+    </div>
 
 
     <!-- =================================================
-         HEADER
+         SPEAKER
          ================================================= -->
 
-    <header class="header">
-
-      <h1>
-        Meeting Timer
-      </h1>
-
-      <p>
-        Jaipur Speakers Toastmasters Club
-      </p>
-
-    </header>
-
-
-    <main class="main">
-
-
-      <!-- ===============================================
-           PRESETS
-           =============================================== -->
-
-      <div class="presets">
-
-
-        <button
-          class="preset active"
-          data-green="60"
-          data-yellow="90"
-          data-red="120">
-
-          Table Topics
-
-          <span>
-            (1–2m)
-          </span>
-
-        </button>
-
-
-        <button
-          class="preset"
-          data-green="240"
-          data-yellow="300"
-          data-red="360">
-
-          Icebreaker
-
-          <span>
-            (4–6m)
-          </span>
-
-        </button>
-
-
-        <button
-          class="preset"
-          data-green="300"
-          data-yellow="360"
-          data-red="420">
-
-          Standard Speech
-
-          <span>
-            (5–7m)
-          </span>
-
-        </button>
-
-
-        <button
-          class="preset"
-          data-green="120"
-          data-yellow="150"
-          data-red="180">
-
-          Evaluation
-
-          <span>
-            (2–3m)
-          </span>
-
-        </button>
-
-
-      </div>
-
-
-      <!-- ===============================================
-           SPEAKER
-           =============================================== -->
-
-      <input
-        id="speaker"
-        class="speaker"
-        type="text"
-        placeholder="Speaker name (optional)"
-        autocomplete="off"
-      >
-
-
-      <!-- ===============================================
-           TIMER
-           =============================================== -->
-
-      <section class="timer-card">
-
-
-        <div
-          id="speakerName"
-          class="speaker-name">
-        </div>
-
-
-        <div
-          id="signal"
-          class="signal">
-
-          READY
-
-        </div>
-
-
-        <div
-          id="timer"
-          class="timer">
-
-          00:00
-
-        </div>
-
-
-        <div
-          id="timingInfo"
-          class="timing-info">
-
-          Green at 01:00 · Yellow at 01:30 · Red at 02:00
-
-        </div>
-
-
-        <!-- SIGNAL LIGHTS -->
-
-        <div class="lights">
-
-
-          <div
-            id="greenLight"
-            class="light green">
-          </div>
-
-
-          <div
-            id="yellowLight"
-            class="light yellow">
-          </div>
-
-
-          <div
-            id="redLight"
-            class="light red">
-          </div>
-
-
-        </div>
-
-
-      </section>
-
-
-      <!-- ===============================================
-           MAIN CONTROLS
-           =============================================== -->
-
-      <div class="controls">
-
-
-        <button
-          id="start"
-          class="control">
-
-          Start
-
-        </button>
-
-
-        <button
-          id="reset"
-          class="control maroon">
-
-          Reset
-
-        </button>
-
-
-        <button
-          id="fullscreen"
-          class="control gray">
-
-          Fullscreen
-
-        </button>
-
-
-        <button
-          id="stop"
-          class="control gray">
-
-          Stop
-
-        </button>
-
-
-      </div>
-
-
-      <!-- ===============================================
-           ADJUST TIME
-           =============================================== -->
-
-      <div class="adjust">
-
-
-        <button
-          id="minus30">
-
-          −30 sec
-
-        </button>
-
-
-        <button
-          id="plus30">
-
-          +30 sec
-
-        </button>
-
-
-      </div>
-
-
-      <!-- ===============================================
-           CUSTOM TIMING
-           =============================================== -->
-
-      <section class="custom">
-
-
-        <h2>
-          Custom Timing
-        </h2>
-
-
-        <div class="custom-grid">
-
-
-          <div class="field">
-
-            <label for="customGreen">
-              Green at (min)
-            </label>
-
-            <input
-              id="customGreen"
-              type="number"
-              min="0"
-              step="0.5"
-              value="5"
-            >
-
-          </div>
-
-
-          <div class="field">
-
-            <label for="customYellow">
-              Yellow at (min)
-            </label>
-
-            <input
-              id="customYellow"
-              type="number"
-              min="0"
-              step="0.5"
-              value="6"
-            >
-
-          </div>
-
-
-          <div class="field">
-
-            <label for="customRed">
-              Red at (min)
-            </label>
-
-            <input
-              id="customRed"
-              type="number"
-              min="0"
-              step="0.5"
-              value="7"
-            >
-
-          </div>
-
-
-          <button
-            id="applyCustom"
-            class="apply">
-
-            Apply
-
-          </button>
-
-
-        </div>
-
-
-      </section>
-
-
-    </main>
+    <input
+      id="speaker"
+      class="speaker"
+      type="text"
+      placeholder="Speaker name (optional)"
+      autocomplete="off"
+    >
 
 
     <!-- =================================================
-         FOOTER
+         TIMER
          ================================================= -->
 
-    <footer class="footer">
+    <section class="timer-card">
 
-      Where Leaders Are Made.
-
-    </footer>
-
-
-  </div>
+      <div
+        id="speakerName"
+        class="speaker-name">
+      </div>
 
 
-  <script>
+      <div
+        id="signal"
+        class="signal">
 
-    /* =====================================================
-       ELEMENTS
-       ===================================================== */
+        READY
 
-    const presets =
-      document.querySelectorAll(".preset");
-
-    const timer =
-      document.getElementById("timer");
-
-    const signal =
-      document.getElementById("signal");
-
-    const timingInfo =
-      document.getElementById("timingInfo");
-
-    const speakerInput =
-      document.getElementById("speaker");
-
-    const speakerName =
-      document.getElementById("speakerName");
-
-    const startButton =
-      document.getElementById("start");
-
-    const resetButton =
-      document.getElementById("reset");
-
-    const stopButton =
-      document.getElementById("stop");
-
-    const fullscreenButton =
-      document.getElementById("fullscreen");
-
-    const plus30Button =
-      document.getElementById("plus30");
-
-    const minus30Button =
-      document.getElementById("minus30");
-
-    const greenLight =
-      document.getElementById("greenLight");
-
-    const yellowLight =
-      document.getElementById("yellowLight");
-
-    const redLight =
-      document.getElementById("redLight");
-
-    const customGreen =
-      document.getElementById("customGreen");
-
-    const customYellow =
-      document.getElementById("customYellow");
-
-    const customRed =
-      document.getElementById("customRed");
-
-    const applyCustom =
-      document.getElementById("applyCustom");
+      </div>
 
 
-    /* =====================================================
-       TIMER STATE
-       ===================================================== */
+      <div
+        id="timer"
+        class="timer">
 
-    let elapsedSeconds = 0;
+        00:00
 
-    let greenAt = 60;
-    let yellowAt = 90;
-    let redAt = 120;
-
-    let running = false;
-
-    let interval = null;
-
-    let lastTickTime = null;
+      </div>
 
 
-    /* =====================================================
-       FORMAT TIME
-       ===================================================== */
+      <div
+        id="timingInfo"
+        class="timing-info">
 
-    function formatTime(seconds) {
+        Green at 01:00 · Yellow at 01:30 · Red at 02:00
 
-      const minutes =
-        Math.floor(seconds / 60);
+      </div>
 
-      const secondsPart =
-        seconds % 60;
 
-      return (
-        String(minutes).padStart(2, "0") +
-        ":" +
-        String(secondsPart).padStart(2, "0")
-      );
+      <div class="lights">
+
+        <div
+          id="greenLight"
+          class="light green">
+        </div>
+
+        <div
+          id="yellowLight"
+          class="light yellow">
+        </div>
+
+        <div
+          id="redLight"
+          class="light red">
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =================================================
+         CONTROLS
+         ================================================= -->
+
+    <div class="controls">
+
+      <button
+        id="start"
+        class="control">
+
+        Start
+
+      </button>
+
+
+      <button
+        id="reset"
+        class="control maroon">
+
+        Reset
+
+      </button>
+
+
+      <button
+        id="meetingMode"
+        class="control">
+
+        Meeting Mode
+
+      </button>
+
+
+      <button
+        id="stop"
+        class="control gray">
+
+        Stop
+
+      </button>
+
+    </div>
+
+
+    <!-- =================================================
+         TIME ADJUSTMENT
+         ================================================= -->
+
+    <div class="adjust">
+
+      <button id="minus30">
+        −30 sec
+      </button>
+
+      <button id="plus30">
+        +30 sec
+      </button>
+
+    </div>
+
+
+    <!-- =================================================
+         CUSTOM TIMING
+         ================================================= -->
+
+    <section class="custom">
+
+      <h2>
+        Custom Timing
+      </h2>
+
+
+      <div class="custom-grid">
+
+        <div class="field">
+
+          <label for="customGreen">
+            Green at (min)
+          </label>
+
+          <input
+            id="customGreen"
+            type="number"
+            min="0"
+            step="0.5"
+            value="5"
+          >
+
+        </div>
+
+
+        <div class="field">
+
+          <label for="customYellow">
+            Yellow at (min)
+          </label>
+
+          <input
+            id="customYellow"
+            type="number"
+            min="0"
+            step="0.5"
+            value="6"
+          >
+
+        </div>
+
+
+        <div class="field">
+
+          <label for="customRed">
+            Red at (min)
+          </label>
+
+          <input
+            id="customRed"
+            type="number"
+            min="0"
+            step="0.5"
+            value="7"
+          >
+
+        </div>
+
+
+        <button
+          id="applyCustom"
+          class="apply">
+
+          Apply
+
+        </button>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- ===================================================
+       FOOTER
+       =================================================== -->
+
+  <footer class="footer">
+
+    Where Leaders Are Made.
+
+  </footer>
+
+</div>
+
+
+<script>
+
+  /* =====================================================
+     ELEMENTS
+     ===================================================== */
+
+  const presets =
+    document.querySelectorAll(".preset");
+
+  const timer =
+    document.getElementById("timer");
+
+  const signal =
+    document.getElementById("signal");
+
+  const timingInfo =
+    document.getElementById("timingInfo");
+
+  const speakerInput =
+    document.getElementById("speaker");
+
+  const speakerName =
+    document.getElementById("speakerName");
+
+  const startButton =
+    document.getElementById("start");
+
+  const resetButton =
+    document.getElementById("reset");
+
+  const stopButton =
+    document.getElementById("stop");
+
+  const meetingModeButton =
+    document.getElementById("meetingMode");
+
+  const plus30Button =
+    document.getElementById("plus30");
+
+  const minus30Button =
+    document.getElementById("minus30");
+
+  const greenLight =
+    document.getElementById("greenLight");
+
+  const yellowLight =
+    document.getElementById("yellowLight");
+
+  const redLight =
+    document.getElementById("redLight");
+
+  const customGreen =
+    document.getElementById("customGreen");
+
+  const customYellow =
+    document.getElementById("customYellow");
+
+  const customRed =
+    document.getElementById("customRed");
+
+  const applyCustom =
+    document.getElementById("applyCustom");
+
+
+  /* =====================================================
+     TIMER STATE
+     ===================================================== */
+
+  let elapsedSeconds = 0;
+
+  let greenAt = 60;
+
+  let yellowAt = 90;
+
+  let redAt = 120;
+
+  let running = false;
+
+  let interval = null;
+
+  let lastTickTime = null;
+
+
+  /* =====================================================
+     FORMAT
+     ===================================================== */
+
+  function formatTime(seconds) {
+
+    const minutes =
+      Math.floor(seconds / 60);
+
+    const secondsPart =
+      seconds % 60;
+
+    return (
+      String(minutes).padStart(2, "0") +
+      ":" +
+      String(secondsPart).padStart(2, "0")
+    );
+
+  }
+
+
+  /* =====================================================
+     CLEAR SIGNAL
+     ===================================================== */
+
+  function clearSignalStates() {
+
+    document.body.classList.remove(
+      "state-green",
+      "state-yellow",
+      "state-red",
+      "state-overtime"
+    );
+
+    greenLight.classList.remove(
+      "active"
+    );
+
+    yellowLight.classList.remove(
+      "active"
+    );
+
+    redLight.classList.remove(
+      "active"
+    );
+
+  }
+
+
+  /* =====================================================
+     UPDATE DISPLAY
+     ===================================================== */
+
+  function updateDisplay() {
+
+    clearSignalStates();
+
+
+    timer.textContent =
+      formatTime(elapsedSeconds);
+
+
+    /* BEFORE GREEN */
+
+    if (
+      elapsedSeconds < greenAt
+    ) {
+
+      signal.textContent =
+        "READY";
+
+      timingInfo.textContent =
+        "Green at " +
+        formatTime(greenAt);
 
     }
 
 
-    /* =====================================================
-       CLEAR SIGNAL STATES
-       ===================================================== */
+    /* GREEN */
 
-    function clearSignalStates() {
+    else if (
+      elapsedSeconds < yellowAt
+    ) {
 
-      document.body.classList.remove(
-        "state-green",
-        "state-yellow",
-        "state-red",
-        "state-overtime"
+      document.body.classList.add(
+        "state-green"
       );
 
-      greenLight.classList.remove(
+      greenLight.classList.add(
         "active"
       );
 
-      yellowLight.classList.remove(
-        "active"
-      );
+      signal.textContent =
+        "GREEN";
 
-      redLight.classList.remove(
-        "active"
-      );
+      timingInfo.textContent =
+        "Yellow at " +
+        formatTime(yellowAt) +
+        " · Red at " +
+        formatTime(redAt);
 
     }
 
 
-    /* =====================================================
-       UPDATE DISPLAY
-       ===================================================== */
+    /* YELLOW */
 
-    function updateDisplay() {
+    else if (
+      elapsedSeconds < redAt
+    ) {
 
-      clearSignalStates();
+      document.body.classList.add(
+        "state-yellow"
+      );
+
+      yellowLight.classList.add(
+        "active"
+      );
+
+      signal.textContent =
+        "YELLOW";
+
+      timingInfo.textContent =
+        "Red at " +
+        formatTime(redAt);
+
+    }
 
 
-      /* -----------------------------------------------
-         Stopwatch
-         ----------------------------------------------- */
+    /* RED */
 
-      timer.textContent =
-        formatTime(elapsedSeconds);
+    else {
+
+      document.body.classList.add(
+        "state-red"
+      );
+
+      redLight.classList.add(
+        "active"
+      );
+
+      signal.textContent =
+        "RED";
+
+      timingInfo.textContent =
+        "Time limit reached";
 
 
-      /* -----------------------------------------------
-         Before Green
-         ----------------------------------------------- */
+      /* OVERTIME */
 
       if (
-        elapsedSeconds < greenAt
+        elapsedSeconds > redAt
       ) {
 
-        signal.textContent =
-          "READY";
-
-        timingInfo.textContent =
-          "Green at " +
-          formatTime(greenAt);
-
-      }
-
-
-      /* -----------------------------------------------
-         Green
-         ----------------------------------------------- */
-
-      else if (
-        elapsedSeconds < yellowAt
-      ) {
-
-        document.body.classList.add(
-          "state-green"
-        );
-
-        greenLight.classList.add(
-          "active"
-        );
-
-        signal.textContent =
-          "GREEN";
-
-        timingInfo.textContent =
-          "Yellow at " +
-          formatTime(yellowAt) +
-          " · Red at " +
-          formatTime(redAt);
-
-      }
-
-
-      /* -----------------------------------------------
-         Yellow
-         ----------------------------------------------- */
-
-      else if (
-        elapsedSeconds < redAt
-      ) {
-
-        document.body.classList.add(
-          "state-yellow"
-        );
-
-        yellowLight.classList.add(
-          "active"
-        );
-
-        signal.textContent =
-          "YELLOW";
-
-        timingInfo.textContent =
-          "Red at " +
-          formatTime(redAt);
-
-      }
-
-
-      /* -----------------------------------------------
-         Red
-         ----------------------------------------------- */
-
-      else {
-
-        document.body.classList.add(
+        document.body.classList.remove(
           "state-red"
         );
 
-        redLight.classList.add(
-          "active"
+        document.body.classList.add(
+          "state-overtime"
         );
 
         signal.textContent =
-          "RED";
+          "OVERTIME";
 
         timingInfo.textContent =
-          "Time limit reached";
-
-
-        /* ---------------------------------------------
-           Overtime
-           --------------------------------------------- */
-
-        if (
-          elapsedSeconds > redAt
-        ) {
-
-          document.body.classList.remove(
-            "state-red"
+          "Over by " +
+          formatTime(
+            elapsedSeconds - redAt
           );
 
-          document.body.classList.add(
-            "state-overtime"
-          );
-
-          signal.textContent =
-            "OVERTIME";
-
-          timingInfo.textContent =
-            "Over by " +
-            formatTime(
-              elapsedSeconds - redAt
-            );
-
-        }
-
-      }
-
-
-      /* -----------------------------------------------
-         Speaker
-         ----------------------------------------------- */
-
-      speakerName.textContent =
-        speakerInput.value.trim();
-
-    }
-
-
-    /* =====================================================
-       ACCURATE TIMER TICK
-       ===================================================== */
-
-    function tick() {
-
-      if (!running) {
-        return;
-      }
-
-      const now =
-        Date.now();
-
-      const actualElapsed =
-        Math.floor(
-          (now - lastTickTime) / 1000
-        );
-
-      if (
-        actualElapsed > elapsedSeconds
-      ) {
-
-        elapsedSeconds =
-          actualElapsed;
-
-        updateDisplay();
-
       }
 
     }
 
 
-    /* =====================================================
-       START / PAUSE
-       ===================================================== */
+    speakerName.textContent =
+      speakerInput.value.trim();
 
-    function toggleTimer() {
-
-      if (running) {
-
-        running = false;
-
-        clearInterval(interval);
-
-        interval = null;
-
-        startButton.textContent =
-          "Resume";
-
-        return;
-
-      }
+  }
 
 
-      running = true;
+  /* =====================================================
+     ACCURATE TIMER TICK
+     ===================================================== */
 
-      lastTickTime =
-        Date.now() -
-        (elapsedSeconds * 1000);
+  function tick() {
 
-      startButton.textContent =
-        "Pause";
+    if (!running) {
+      return;
+    }
 
-      interval =
-        setInterval(
-          tick,
-          200
-        );
+    const now =
+      Date.now();
+
+    const actualElapsed =
+      Math.floor(
+        (now - lastTickTime) / 1000
+      );
+
+    if (
+      actualElapsed !== elapsedSeconds
+    ) {
+
+      elapsedSeconds =
+        actualElapsed;
+
+      updateDisplay();
 
     }
 
+  }
 
-    /* =====================================================
-       STOP
-       ===================================================== */
 
-    function stopTimer() {
+  /* =====================================================
+     START / PAUSE
+     ===================================================== */
+
+  function toggleTimer() {
+
+    if (running) {
 
       running = false;
 
@@ -1638,362 +1462,418 @@
       interval = null;
 
       startButton.textContent =
-        "Start";
+        "Resume";
+
+      return;
 
     }
 
 
-    /* =====================================================
-       RESET
-       ===================================================== */
+    running = true;
 
-    function resetTimer() {
+    lastTickTime =
+      Date.now() -
+      (elapsedSeconds * 1000);
 
-      stopTimer();
+    startButton.textContent =
+      "Pause";
 
-      elapsedSeconds = 0;
+    interval =
+      setInterval(
+        tick,
+        200
+      );
+
+  }
+
+
+  /* =====================================================
+     STOP
+     ===================================================== */
+
+  function stopTimer() {
+
+    running = false;
+
+    clearInterval(interval);
+
+    interval = null;
+
+    startButton.textContent =
+      "Start";
+
+  }
+
+
+  /* =====================================================
+     RESET
+     ===================================================== */
+
+  function resetTimer() {
+
+    stopTimer();
+
+    elapsedSeconds = 0;
+
+    updateDisplay();
+
+  }
+
+
+  /* =====================================================
+     APPLY TIMING
+     ===================================================== */
+
+  function applyTiming(
+    green,
+    yellow,
+    red
+  ) {
+
+    if (
+      green < 0 ||
+      yellow <= green ||
+      red <= yellow
+    ) {
+
+      alert(
+        "Please make sure Green < Yellow < Red."
+      );
+
+      return false;
+
+    }
+
+    greenAt = green;
+
+    yellowAt = yellow;
+
+    redAt = red;
+
+    resetTimer();
+
+    return true;
+
+  }
+
+
+  /* =====================================================
+     PRESETS
+     ===================================================== */
+
+  presets.forEach(
+    (preset) => {
+
+      preset.addEventListener(
+        "click",
+        () => {
+
+          presets.forEach(
+            (button) =>
+              button.classList.remove(
+                "active"
+              )
+          );
+
+          preset.classList.add(
+            "active"
+          );
+
+          applyTiming(
+            Number(
+              preset.dataset.green
+            ),
+            Number(
+              preset.dataset.yellow
+            ),
+            Number(
+              preset.dataset.red
+            )
+          );
+
+        }
+      );
+
+    }
+  );
+
+
+  /* =====================================================
+     CONTROLS
+     ===================================================== */
+
+  startButton.addEventListener(
+    "click",
+    toggleTimer
+  );
+
+
+  stopButton.addEventListener(
+    "click",
+    stopTimer
+  );
+
+
+  resetButton.addEventListener(
+    "click",
+    resetTimer
+  );
+
+
+  /* =====================================================
+     +30 SECONDS
+     ===================================================== */
+
+  plus30Button.addEventListener(
+    "click",
+    () => {
+
+      elapsedSeconds += 30;
+
+      if (running) {
+
+        lastTickTime =
+          Date.now() -
+          (elapsedSeconds * 1000);
+
+      }
 
       updateDisplay();
 
     }
+  );
 
 
-    /* =====================================================
-       APPLY TIMING
-       ===================================================== */
+  /* =====================================================
+     -30 SECONDS
+     ===================================================== */
 
-    function applyTiming(
-      green,
-      yellow,
-      red
-    ) {
+  minus30Button.addEventListener(
+    "click",
+    () => {
 
-      if (
-        green < 0 ||
-        yellow <= green ||
-        red <= yellow
-      ) {
-
-        alert(
-          "Please make sure Green < Yellow < Red."
+      elapsedSeconds =
+        Math.max(
+          0,
+          elapsedSeconds - 30
         );
 
-        return false;
+      if (running) {
+
+        lastTickTime =
+          Date.now() -
+          (elapsedSeconds * 1000);
 
       }
 
-      greenAt = green;
-      yellowAt = yellow;
-      redAt = red;
-
-      resetTimer();
-
-      return true;
+      updateDisplay();
 
     }
+  );
 
 
-    /* =====================================================
-       PRESETS
-       ===================================================== */
+  /* =====================================================
+     MEETING MODE
+     ===================================================== */
 
-    presets.forEach(
-      (preset) => {
+  meetingModeButton.addEventListener(
+    "click",
+    async () => {
 
-        preset.addEventListener(
-          "click",
-          () => {
-
-            presets.forEach(
-              (button) => {
-
-                button.classList.remove(
-                  "active"
-                );
-
-              }
-            );
+      document.body.classList.toggle(
+        "meeting-mode"
+      );
 
 
-            preset.classList.add(
-              "active"
-            );
-
-
-            applyTiming(
-              Number(
-                preset.dataset.green
-              ),
-              Number(
-                preset.dataset.yellow
-              ),
-              Number(
-                preset.dataset.red
-              )
-            );
-
-          }
+      const active =
+        document.body.classList.contains(
+          "meeting-mode"
         );
 
-      }
-    );
+
+      meetingModeButton.textContent =
+        active
+          ? "Exit Meeting Mode"
+          : "Meeting Mode";
 
 
-    /* =====================================================
-       START
-       ===================================================== */
+      /*
+       * Try native fullscreen.
+       *
+       * If FreeToastHost blocks it, the meeting
+       * mode above still works perfectly.
+       */
 
-    startButton.addEventListener(
-      "click",
-      toggleTimer
-    );
-
-
-    /* =====================================================
-       STOP
-       ===================================================== */
-
-    stopButton.addEventListener(
-      "click",
-      stopTimer
-    );
-
-
-    /* =====================================================
-       RESET
-       ===================================================== */
-
-    resetButton.addEventListener(
-      "click",
-      resetTimer
-    );
-
-
-    /* =====================================================
-       PLUS 30
-       ===================================================== */
-
-    plus30Button.addEventListener(
-      "click",
-      () => {
-
-        elapsedSeconds += 30;
-
-        if (running) {
-
-          lastTickTime =
-            Date.now() -
-            (elapsedSeconds * 1000);
-
-        }
-
-        updateDisplay();
-
-      }
-    );
-
-
-    /* =====================================================
-       MINUS 30
-       ===================================================== */
-
-    minus30Button.addEventListener(
-      "click",
-      () => {
-
-        elapsedSeconds =
-          Math.max(
-            0,
-            elapsedSeconds - 30
-          );
-
-        if (running) {
-
-          lastTickTime =
-            Date.now() -
-            (elapsedSeconds * 1000);
-
-        }
-
-        updateDisplay();
-
-      }
-    );
-
-
-    /* =====================================================
-       FULLSCREEN
-       ===================================================== */
-
-    fullscreenButton.addEventListener(
-      "click",
-      async () => {
+      if (
+        active &&
+        !document.fullscreenElement &&
+        document.documentElement.requestFullscreen
+      ) {
 
         try {
 
-          if (
-            !document.fullscreenElement
-          ) {
+          await document.documentElement
+            .requestFullscreen();
 
-            await document.documentElement
-              .requestFullscreen();
+        }
 
-          } else {
+        catch (error) {
 
-            await document.exitFullscreen();
-
-          }
-
-        } catch (error) {
+          /*
+           * Expected in some iframe environments.
+           * Meeting Mode continues without fullscreen.
+           */
 
           console.log(
-            "Fullscreen unavailable:",
-            error
+            "Native fullscreen unavailable."
           );
 
         }
 
       }
-    );
+
+    }
+  );
 
 
-    /* =====================================================
-       FULLSCREEN STATE
-       ===================================================== */
+  /* =====================================================
+     EXIT NATIVE FULLSCREEN
+     ===================================================== */
 
-    document.addEventListener(
-      "fullscreenchange",
-      () => {
+  document.addEventListener(
+    "fullscreenchange",
+    () => {
 
-        const active =
-          Boolean(
-            document.fullscreenElement
-          );
+      if (
+        !document.fullscreenElement &&
+        document.body.classList.contains(
+          "meeting-mode"
+        )
+      ) {
 
-        document.body.classList.toggle(
-          "fullscreen",
-          active
-        );
+        /*
+         * Keep Meeting Mode active even if
+         * native fullscreen is unavailable.
+         */
 
-        fullscreenButton.textContent =
-          active
-            ? "Exit Fullscreen"
-            : "Fullscreen";
-
-      }
-    );
-
-
-    /* =====================================================
-       SPEAKER NAME
-       ===================================================== */
-
-    speakerInput.addEventListener(
-      "input",
-      updateDisplay
-    );
-
-
-    /* =====================================================
-       CUSTOM TIMING
-       ===================================================== */
-
-    applyCustom.addEventListener(
-      "click",
-      () => {
-
-        const green =
-          Number(
-            customGreen.value
-          ) * 60;
-
-        const yellow =
-          Number(
-            customYellow.value
-          ) * 60;
-
-        const red =
-          Number(
-            customRed.value
-          ) * 60;
-
-
-        presets.forEach(
-          (button) =>
-            button.classList.remove(
-              "active"
-            )
-        );
-
-
-        applyTiming(
-          green,
-          yellow,
-          red
-        );
+        return;
 
       }
-    );
+
+    }
+  );
 
 
-    /* =====================================================
-       KEYBOARD SHORTCUTS
-       ===================================================== */
+  /* =====================================================
+     SPEAKER
+     ===================================================== */
 
-    document.addEventListener(
-      "keydown",
-      (event) => {
-
-        if (
-          event.target.tagName === "INPUT"
-        ) {
-          return;
-        }
+  speakerInput.addEventListener(
+    "input",
+    updateDisplay
+  );
 
 
-        if (
-          event.code === "Space"
-        ) {
+  /* =====================================================
+     CUSTOM TIMING
+     ===================================================== */
 
-          event.preventDefault();
+  applyCustom.addEventListener(
+    "click",
+    () => {
 
-          toggleTimer();
+      const green =
+        Number(
+          customGreen.value
+        ) * 60;
 
-        }
+      const yellow =
+        Number(
+          customYellow.value
+        ) * 60;
+
+      const red =
+        Number(
+          customRed.value
+        ) * 60;
 
 
-        if (
-          event.code === "KeyR"
-        ) {
+      presets.forEach(
+        (button) =>
+          button.classList.remove(
+            "active"
+          )
+      );
 
-          resetTimer();
 
-        }
+      applyTiming(
+        green,
+        yellow,
+        red
+      );
+
+    }
+  );
 
 
-        if (
-          event.code === "KeyF"
-        ) {
+  /* =====================================================
+     KEYBOARD SHORTCUTS
+     ===================================================== */
 
-          fullscreenButton.click();
+  document.addEventListener(
+    "keydown",
+    (event) => {
 
-        }
+      if (
+        event.target.tagName === "INPUT"
+      ) {
+        return;
+      }
+
+
+      if (
+        event.code === "Space"
+      ) {
+
+        event.preventDefault();
+
+        toggleTimer();
 
       }
-    );
 
 
-    /* =====================================================
-       INITIALIZE
-       ===================================================== */
+      if (
+        event.code === "KeyR"
+      ) {
 
-    applyTiming(
-      60,
-      90,
-      120
-    );
+        resetTimer();
 
-  </script>
+      }
+
+
+      if (
+        event.code === "KeyM"
+      ) {
+
+        meetingModeButton.click();
+
+      }
+
+    }
+  );
+
+
+  /* =====================================================
+     INITIAL STATE
+     ===================================================== */
+
+  applyTiming(
+    60,
+    90,
+    120
+  );
+
+</script>
 
 </body>
 </html>
