@@ -2,25 +2,41 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  >
+
   <meta name="theme-color" content="#004165">
 
-  <title>Toastmasters Timer | Jaipur Speakers</title>
+  <title>Meeting Timer | Jaipur Speakers Toastmasters Club</title>
 
   <style>
+
+    /* =====================================================
+       TOASTMASTERS COLOUR PALETTE
+       ===================================================== */
+
     :root {
       --loyal-blue: #004165;
       --true-maroon: #772432;
       --cool-gray: #A9B2B1;
+
       --white: #FFFFFF;
       --black: #222222;
 
+      /* Timing signal colours */
       --signal-green: #3F7D20;
       --signal-yellow: #D99A00;
       --signal-red: #C62828;
 
-      --light-bg: #F4F5F5;
+      --light-background: #F4F5F5;
     }
+
+
+    /* =====================================================
+       RESET
+       ===================================================== */
 
     * {
       box-sizing: border-box;
@@ -34,21 +50,37 @@
       margin: 0;
     }
 
-    body {
-      font-family: "Source Sans 3", "Source Sans Pro", Arial, sans-serif;
-      background: var(--light-bg);
-      color: var(--black);
-      transition: background-color 0.3s ease;
-    }
 
     /* =====================================================
-       NORMAL VIEW
+       BASE PAGE
+       ===================================================== */
+
+    body {
+      font-family:
+        "Source Sans 3",
+        "Source Sans Pro",
+        Arial,
+        sans-serif;
+
+      background: var(--light-background);
+      color: var(--black);
+
+      transition:
+        background-color 0.3s ease,
+        color 0.3s ease;
+    }
+
+
+    /* =====================================================
+       APP
        ===================================================== */
 
     .app {
       width: 100%;
       min-height: 100vh;
+
       max-width: 900px;
+
       margin: 0 auto;
 
       background: var(--white);
@@ -58,59 +90,112 @@
         color 0.3s ease;
     }
 
+
+    /* =====================================================
+       MINIMAL HEADER
+       ===================================================== */
+
     .header {
-      background: var(--loyal-blue);
-      color: var(--white);
-      text-align: center;
-      padding: 18px 12px;
+      padding: 10px 12px 7px;
+
+      background: transparent;
+      color: var(--loyal-blue);
+
+      text-align: left;
     }
 
     .header h1 {
       margin: 0;
-      font-size: clamp(23px, 6vw, 38px);
-      line-height: 1.05;
+
+      font-size: 20px;
+      line-height: 1.1;
+
+      font-weight: 700;
+      letter-spacing: 0.01em;
     }
 
     .header p {
-      margin: 6px 0 0;
-      font-size: 16px;
+      margin: 2px 0 0;
+
+      font-size: 12px;
+
+      color: #666666;
     }
+
+
+    /* =====================================================
+       MAIN
+       ===================================================== */
 
     .main {
       width: 100%;
-      padding: 14px;
+
+      padding: 7px 10px 12px;
 
       background: var(--white);
 
-      transition: background-color 0.3s ease;
+      transition:
+        background-color 0.3s ease,
+        color 0.3s ease;
     }
 
+
     /* =====================================================
-       PRESETS
+       PRESET PILLS
        ===================================================== */
 
     .presets {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      display: flex;
+
       gap: 8px;
-      margin-bottom: 12px;
+
+      width: 100%;
+
+      margin-bottom: 10px;
+
+      overflow-x: auto;
+
+      padding-bottom: 2px;
+
+      scrollbar-width: none;
+
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .presets::-webkit-scrollbar {
+      display: none;
     }
 
     .preset {
-      min-height: 62px;
-      padding: 9px 6px;
+      flex: 0 0 auto;
 
-      border: 2px solid var(--loyal-blue);
+      min-height: 42px;
 
-      background: var(--white);
+      padding: 9px 15px;
+
+      border: 0;
+
+      border-radius: 999px;
+
+      background: #E7ECEF;
+
       color: var(--loyal-blue);
 
       font: inherit;
+
       font-size: 14px;
       font-weight: 700;
 
+      white-space: nowrap;
+
       cursor: pointer;
+
       touch-action: manipulation;
+
+      transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        opacity 0.2s ease;
     }
 
     .preset.active {
@@ -118,42 +203,66 @@
       color: var(--white);
     }
 
-    .preset span {
-      display: block;
-      margin-top: 3px;
-      font-size: 11px;
-      font-weight: 400;
+    .preset:active {
+      opacity: 0.75;
     }
 
+    .preset span {
+      display: inline;
+
+      margin-left: 3px;
+
+      font-size: 13px;
+
+      font-weight: 600;
+    }
+
+
     /* =====================================================
-       SPEAKER
+       SPEAKER INPUT
        ===================================================== */
 
     .speaker {
-      width: 100%;
-      margin-bottom: 12px;
-      padding: 13px;
+      display: block;
 
-      border: 2px solid var(--cool-gray);
+      width: 100%;
+
+      margin-bottom: 10px;
+
+      padding: 11px 12px;
+
+      border: 1px solid var(--cool-gray);
+
+      border-radius: 4px;
 
       background: var(--white);
+
       color: var(--black);
 
       font: inherit;
-      font-size: 17px;
+
+      font-size: 16px;
 
       outline: none;
     }
 
+    .speaker:focus {
+      border-color: var(--loyal-blue);
+    }
+
+
     /* =====================================================
-       TIMER
+       TIMER CARD
        ===================================================== */
 
     .timer-card {
       width: 100%;
-      padding: 22px 10px 24px;
 
-      border: 7px solid var(--loyal-blue);
+      padding: 18px 8px 22px;
+
+      border: 5px solid var(--loyal-blue);
+
+      border-radius: 6px;
 
       background: var(--white);
 
@@ -165,47 +274,74 @@
         color 0.3s ease;
     }
 
+
+    /* Speaker */
+
     .speaker-name {
-      min-height: 28px;
+      min-height: 27px;
 
       color: var(--loyal-blue);
 
       font-size: 20px;
       font-weight: 700;
+
+      transition: color 0.3s ease;
     }
 
+
+    /* Signal */
+
     .signal {
-      min-height: 29px;
-      margin-top: 4px;
+      min-height: 28px;
+
+      margin-top: 3px;
 
       color: var(--loyal-blue);
 
       font-size: 18px;
       font-weight: 800;
 
-      letter-spacing: 0.09em;
+      letter-spacing: 0.1em;
+
       text-transform: uppercase;
+
+      transition: color 0.3s ease;
     }
+
+
+    /* BIG STOPWATCH */
 
     .timer {
       margin: 10px 0;
 
       color: var(--loyal-blue);
 
-      font-size: clamp(82px, 21vw, 170px);
+      font-size: clamp(90px, 24vw, 175px);
+
+      line-height: 0.86;
+
       font-weight: 800;
-      line-height: 0.9;
 
       font-variant-numeric: tabular-nums;
-      letter-spacing: 0.015em;
+
+      letter-spacing: -0.02em;
+
+      transition: color 0.3s ease;
     }
+
+
+    /* Timing information */
 
     .timing-info {
       min-height: 25px;
 
-      color: #555;
+      color: #555555;
+
       font-size: 15px;
+
+      transition: color 0.3s ease;
     }
+
 
     /* =====================================================
        SIGNAL LIGHTS
@@ -213,10 +349,12 @@
 
     .lights {
       display: flex;
+
       justify-content: center;
+
       gap: 12px;
 
-      margin-top: 18px;
+      margin-top: 17px;
     }
 
     .light {
@@ -224,9 +362,14 @@
       height: 46px;
 
       border: 3px solid currentColor;
+
       border-radius: 50%;
 
       opacity: 0.16;
+
+      transition:
+        opacity 0.2s ease,
+        background-color 0.2s ease;
     }
 
     .light.green {
@@ -257,164 +400,207 @@
       background: var(--signal-red);
     }
 
-  /* =====================================================
-   MINIMAL CONTROLS
-   ===================================================== */
 
-.controls {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
-  gap: 8px;
-  margin-top: 10px;
-}
-
-button.control {
-  min-height: 48px;
-  padding: 10px 8px;
-
-  border: 1px solid rgba(0, 0, 0, 0.14);
-  border-radius: 4px;
-
-  background: rgba(255, 255, 255, 0.82);
-  color: var(--loyal-blue);
-
-  font: inherit;
-  font-size: 15px;
-  font-weight: 700;
-
-  cursor: pointer;
-  touch-action: manipulation;
-
-  transition:
-    background-color 0.2s ease,
-    border-color 0.2s ease,
-    opacity 0.2s ease;
-}
-
-button.control:hover {
-  background: rgba(255, 255, 255, 0.94);
-}
-
-button.control:active {
-  background: rgba(255, 255, 255, 1);
-}
-
-button.maroon {
-  background: rgba(255, 255, 255, 0.82);
-  color: var(--true-maroon);
-}
-
-button.gray {
-  background: rgba(255, 255, 255, 0.68);
-  color: var(--black);
-}
-
-
-/* =====================================================
-   ADJUSTMENT BUTTONS
-   ===================================================== */
-
-.adjust {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
-  margin-top: 8px;
-}
-
-.adjust button {
-  min-height: 42px;
-  padding: 9px;
-
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  border-radius: 4px;
-
-  background: rgba(255, 255, 255, 0.62);
-  color: var(--black);
-
-  font: inherit;
-  font-size: 14px;
-  font-weight: 600;
-
-  cursor: pointer;
-  touch-action: manipulation;
-
-  transition:
-    background-color 0.2s ease,
-    opacity 0.2s ease;
-}
-
-.adjust button:hover {
-  background: rgba(255, 255, 255, 0.78);
-}
-
-.adjust button:active {
-  background: rgba(255, 255, 255, 0.92);
-}
-
-
-/* =====================================================
-   SIGNAL STATES
-   Keep controls subtle but readable
-   ===================================================== */
-
-body.state-green .controls button,
-body.state-yellow .controls button,
-body.state-red .controls button,
-body.state-overtime .controls button,
-body.state-green .adjust button,
-body.state-yellow .adjust button,
-body.state-red .adjust button,
-body.state-overtime .adjust button {
-  background: rgba(255, 255, 255, 0.82);
-  color: var(--black);
-}
-
-body.state-green .controls button:first-child,
-body.state-yellow .controls button:first-child,
-body.state-red .controls button:first-child,
-body.state-overtime .controls button:first-child {
-  font-weight: 800;
-}
-
-
-/* =====================================================
-   MOBILE
-   ===================================================== */
-
-@media (max-width: 650px) {
-
-  .controls {
-    grid-template-columns: 1.5fr 1fr 1fr 1fr;
-    gap: 6px;
-  }
-
-  button.control {
-    min-height: 44px;
-    padding: 8px 5px;
-    font-size: 14px;
-  }
-
-  .adjust {
-    gap: 6px;
-  }
-
-  .adjust button {
-    min-height: 38px;
-    font-size: 13px;
-  }
-}
     /* =====================================================
-       WHOLE PAGE SIGNAL STATES
+       CONTROL BUTTONS
        ===================================================== */
 
-    body.state-green,
-    body.state-yellow,
-    body.state-red,
-    body.state-overtime {
-      min-height: 100vh;
+    .controls {
+      display: grid;
+
+      grid-template-columns:
+        1.5fr
+        1fr
+        1fr
+        1fr;
+
+      gap: 6px;
+
+      margin-top: 10px;
     }
 
-    /* GREEN */
+    button.control {
+      min-height: 44px;
+
+      padding: 8px 6px;
+
+      border: 1px solid rgba(0, 0, 0, 0.12);
+
+      border-radius: 4px;
+
+      background: rgba(255, 255, 255, 0.82);
+
+      color: var(--loyal-blue);
+
+      font: inherit;
+
+      font-size: 14px;
+      font-weight: 700;
+
+      cursor: pointer;
+
+      touch-action: manipulation;
+
+      transition:
+        background-color 0.2s ease,
+        opacity 0.2s ease;
+    }
+
+    button.control:active {
+      background: rgba(255, 255, 255, 0.98);
+
+      opacity: 0.85;
+    }
+
+    button.maroon {
+      color: var(--true-maroon);
+    }
+
+    button.gray {
+      color: var(--black);
+
+      background: rgba(255, 255, 255, 0.65);
+    }
+
+
+    /* =====================================================
+       +/- CONTROLS
+       ===================================================== */
+
+    .adjust {
+      display: grid;
+
+      grid-template-columns: 1fr 1fr;
+
+      gap: 6px;
+
+      margin-top: 6px;
+    }
+
+    .adjust button {
+      min-height: 38px;
+
+      padding: 8px;
+
+      border: 1px solid rgba(0, 0, 0, 0.10);
+
+      border-radius: 4px;
+
+      background: rgba(255, 255, 255, 0.60);
+
+      color: var(--black);
+
+      font: inherit;
+
+      font-size: 13px;
+      font-weight: 600;
+
+      cursor: pointer;
+
+      touch-action: manipulation;
+    }
+
+
+    /* =====================================================
+       CUSTOM TIMER
+       ===================================================== */
+
+    .custom {
+      margin-top: 19px;
+
+      padding-top: 17px;
+
+      border-top: 1px solid #dddddd;
+    }
+
+    .custom h2 {
+      margin: 0 0 10px;
+
+      color: var(--loyal-blue);
+
+      font-size: 20px;
+    }
+
+    .custom-grid {
+      display: grid;
+
+      grid-template-columns:
+        1fr
+        1fr
+        1fr
+        auto;
+
+      gap: 7px;
+
+      align-items: end;
+    }
+
+    .field label {
+      display: block;
+
+      margin-bottom: 4px;
+
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .field input {
+      width: 100%;
+
+      padding: 10px;
+
+      border: 1px solid var(--cool-gray);
+
+      border-radius: 4px;
+
+      font: inherit;
+
+      font-size: 16px;
+    }
+
+    .apply {
+      min-height: 43px;
+
+      padding: 10px 15px;
+
+      border: 0;
+
+      border-radius: 4px;
+
+      background: var(--true-maroon);
+
+      color: var(--white);
+
+      font: inherit;
+
+      font-weight: 700;
+
+      cursor: pointer;
+
+      touch-action: manipulation;
+    }
+
+
+    /* =====================================================
+       FOOTER
+       ===================================================== */
+
+    .footer {
+      padding: 10px;
+
+      background: var(--loyal-blue);
+
+      color: var(--white);
+
+      text-align: center;
+
+      font-size: 12px;
+    }
+
+
+    /* =====================================================
+       WHOLE PAGE GREEN
+       ===================================================== */
 
     body.state-green {
       background: var(--signal-green);
@@ -427,6 +613,7 @@ body.state-overtime .controls button:first-child {
 
     body.state-green .timer-card {
       background: var(--signal-green);
+
       border-color: var(--white);
     }
 
@@ -437,7 +624,10 @@ body.state-overtime .controls button:first-child {
       color: var(--white);
     }
 
-    /* YELLOW */
+
+    /* =====================================================
+       WHOLE PAGE YELLOW
+       ===================================================== */
 
     body.state-yellow {
       background: var(--signal-yellow);
@@ -450,6 +640,7 @@ body.state-overtime .controls button:first-child {
 
     body.state-yellow .timer-card {
       background: var(--signal-yellow);
+
       border-color: var(--white);
     }
 
@@ -460,7 +651,10 @@ body.state-overtime .controls button:first-child {
       color: var(--white);
     }
 
-    /* RED */
+
+    /* =====================================================
+       WHOLE PAGE RED
+       ===================================================== */
 
     body.state-red {
       background: var(--signal-red);
@@ -473,6 +667,7 @@ body.state-overtime .controls button:first-child {
 
     body.state-red .timer-card {
       background: var(--signal-red);
+
       border-color: var(--white);
     }
 
@@ -483,7 +678,10 @@ body.state-overtime .controls button:first-child {
       color: var(--white);
     }
 
-    /* OVERTIME */
+
+    /* =====================================================
+       OVERTIME
+       ===================================================== */
 
     body.state-overtime {
       background: var(--true-maroon);
@@ -496,6 +694,7 @@ body.state-overtime .controls button:first-child {
 
     body.state-overtime .timer-card {
       background: var(--true-maroon);
+
       border-color: var(--white);
     }
 
@@ -506,12 +705,32 @@ body.state-overtime .controls button:first-child {
       color: var(--white);
     }
 
+
     /* =====================================================
-       FULLSCREEN PHONE MODE
+       KEEP CONTROLS SUBTLE ON SIGNAL BACKGROUNDS
+       ===================================================== */
+
+    body.state-green .controls button,
+    body.state-yellow .controls button,
+    body.state-red .controls button,
+    body.state-overtime .controls button,
+    body.state-green .adjust button,
+    body.state-yellow .adjust button,
+    body.state-red .adjust button,
+    body.state-overtime .adjust button {
+      background: rgba(255, 255, 255, 0.82);
+
+      color: var(--black);
+    }
+
+
+    /* =====================================================
+       FULLSCREEN MEETING MODE
        ===================================================== */
 
     body.fullscreen {
       padding: 0;
+
       overflow: hidden;
     }
 
@@ -530,7 +749,9 @@ body.state-overtime .controls button:first-child {
     body.fullscreen .app,
     body.fullscreen .main {
       width: 100%;
+
       max-width: none;
+
       min-height: 100vh;
 
       padding: 0;
@@ -540,44 +761,57 @@ body.state-overtime .controls button:first-child {
 
     body.fullscreen .timer-card {
       width: 100%;
+
       min-height: 100vh;
 
       padding: 20px;
 
       border: 0;
 
+      border-radius: 0;
+
       background: transparent;
 
       display: flex;
+
       flex-direction: column;
-      justify-content: center;
+
       align-items: center;
+
+      justify-content: center;
     }
 
     body.fullscreen .speaker-name {
       color: var(--white);
 
-      font-size: clamp(22px, 6vw, 42px);
+      font-size:
+        clamp(22px, 6vw, 42px);
     }
 
     body.fullscreen .signal {
       color: var(--white);
 
-      font-size: clamp(22px, 7vw, 42px);
+      font-size:
+        clamp(21px, 6vw, 40px);
+
+      letter-spacing: 0.12em;
     }
 
     body.fullscreen .timer {
       color: var(--white);
 
-      font-size: clamp(120px, 31vw, 360px);
+      font-size:
+        clamp(125px, 32vw, 360px);
 
-      line-height: 0.85;
+      line-height: 0.82;
 
-      margin: 20px 0;
+      margin: 18px 0;
     }
 
-    /* In fullscreen, use the state color
-       on the entire viewport. */
+
+    /* =====================================================
+       FULLSCREEN SIGNAL BACKGROUNDS
+       ===================================================== */
 
     body.fullscreen.state-green,
     body.fullscreen.state-green .app,
@@ -607,22 +841,25 @@ body.state-overtime .controls button:first-child {
       background: var(--true-maroon);
     }
 
+
     /* =====================================================
-       MOBILE
+       TABLET / MOBILE
        ===================================================== */
 
     @media (max-width: 650px) {
 
-      .presets {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
       .controls {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns:
+          1.4fr
+          1fr
+          1fr
+          1fr;
       }
 
       .custom-grid {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns:
+          1fr
+          1fr;
       }
 
       .apply {
@@ -630,10 +867,49 @@ body.state-overtime .controls button:first-child {
       }
     }
 
+
+    /* =====================================================
+       SMALL PHONE
+       ===================================================== */
+
     @media (max-width: 400px) {
 
+      .header {
+        padding: 8px 10px 6px;
+      }
+
+      .header h1 {
+        font-size: 19px;
+      }
+
+      .header p {
+        font-size: 11px;
+      }
+
+      .main {
+        padding: 6px 8px 10px;
+      }
+
+      .preset {
+        padding: 8px 13px;
+
+        font-size: 13px;
+      }
+
+      .preset span {
+        font-size: 12px;
+      }
+
+      .timer-card {
+        padding: 16px 6px 20px;
+      }
+
       .timer {
-        font-size: 76px;
+        font-size: 75px;
+      }
+
+      .signal {
+        font-size: 16px;
       }
 
       .light {
@@ -641,445 +917,719 @@ body.state-overtime .controls button:first-child {
         height: 40px;
       }
 
-      .custom-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .apply {
-        grid-column: auto;
+      button.control {
+        font-size: 13px;
       }
     }
+
   </style>
 </head>
 
+
 <body>
 
-<div class="app">
+  <div class="app">
 
-  <header class="header">
-    <h1>Toastmasters Meeting Timer</h1>
-    <p>Jaipur Speakers Toastmasters Club</p>
-  </header>
 
-  <main class="main">
+    <!-- =================================================
+         HEADER
+         ================================================= -->
 
-    <div class="presets">
+    <header class="header">
 
-      <button
-        class="preset active"
-        data-green="60"
-        data-yellow="90"
-        data-red="120">
-        Table Topics
-        <span>1:00 · 1:30 · 2:00</span>
-      </button>
+      <h1>
+        Meeting Timer
+      </h1>
 
-      <button
-        class="preset"
-        data-green="240"
-        data-yellow="300"
-        data-red="360">
-        Icebreaker
-        <span>4:00 · 5:00 · 6:00</span>
-      </button>
+      <p>
+        Jaipur Speakers Toastmasters Club
+      </p>
 
-      <button
-        class="preset"
-        data-green="300"
-        data-yellow="360"
-        data-red="420">
-        Prepared Speech
-        <span>5:00 · 6:00 · 7:00</span>
-      </button>
+    </header>
 
-      <button
-        class="preset"
-        data-green="120"
-        data-yellow="150"
-        data-red="180">
-        Evaluation
-        <span>2:00 · 2:30 · 3:00</span>
-      </button>
 
-    </div>
+    <main class="main">
 
-    <input
-      id="speaker"
-      class="speaker"
-      type="text"
-      placeholder="Speaker name (optional)"
-      autocomplete="off"
-    >
 
-    <section class="timer-card">
+      <!-- ===============================================
+           PRESETS
+           =============================================== -->
 
-      <div
-        id="speakerName"
-        class="speaker-name">
-      </div>
+      <div class="presets">
 
-      <div
-        id="signal"
-        class="signal">
-        READY
-      </div>
-
-      <div
-        id="timer"
-        class="timer">
-        00:00
-      </div>
-
-      <div
-        id="timingInfo"
-        class="timing-info">
-        Green at 1:00 · Yellow at 1:30 · Red at 2:00
-      </div>
-
-      <div class="lights">
-
-        <div
-          id="greenLight"
-          class="light green">
-        </div>
-
-        <div
-          id="yellowLight"
-          class="light yellow">
-        </div>
-
-        <div
-          id="redLight"
-          class="light red">
-        </div>
-
-      </div>
-
-    </section>
-
-    <div class="controls">
-
-      <button
-        id="start"
-        class="control">
-        Start
-      </button>
-
-      <button
-        id="reset"
-        class="control maroon">
-        Reset
-      </button>
-
-      <button
-        id="fullscreen"
-        class="control gray">
-        Fullscreen
-      </button>
-
-      <button
-        id="stop"
-        class="control gray">
-        Stop
-      </button>
-
-    </div>
-
-    <div class="adjust">
-
-      <button id="minus30">
-        −30 sec
-      </button>
-
-      <button id="plus30">
-        +30 sec
-      </button>
-
-    </div>
-
-    <section class="custom">
-
-      <h2>Custom Timing</h2>
-
-      <div class="custom-grid">
-
-        <div class="field">
-          <label for="customGreen">
-            Green at (min)
-          </label>
-
-          <input
-            id="customGreen"
-            type="number"
-            min="0"
-            step="0.5"
-            value="5">
-        </div>
-
-        <div class="field">
-          <label for="customYellow">
-            Yellow at (min)
-          </label>
-
-          <input
-            id="customYellow"
-            type="number"
-            min="0"
-            step="0.5"
-            value="6">
-        </div>
-
-        <div class="field">
-          <label for="customRed">
-            Red at (min)
-          </label>
-
-          <input
-            id="customRed"
-            type="number"
-            min="0"
-            step="0.5"
-            value="7">
-        </div>
 
         <button
-          id="applyCustom"
-          class="apply">
-          Apply
+          class="preset active"
+          data-green="60"
+          data-yellow="90"
+          data-red="120">
+
+          Table Topics
+
+          <span>
+            (1–2m)
+          </span>
+
         </button>
+
+
+        <button
+          class="preset"
+          data-green="240"
+          data-yellow="300"
+          data-red="360">
+
+          Icebreaker
+
+          <span>
+            (4–6m)
+          </span>
+
+        </button>
+
+
+        <button
+          class="preset"
+          data-green="300"
+          data-yellow="360"
+          data-red="420">
+
+          Standard Speech
+
+          <span>
+            (5–7m)
+          </span>
+
+        </button>
+
+
+        <button
+          class="preset"
+          data-green="120"
+          data-yellow="150"
+          data-red="180">
+
+          Evaluation
+
+          <span>
+            (2–3m)
+          </span>
+
+        </button>
+
 
       </div>
 
-    </section>
 
-  </main>
+      <!-- ===============================================
+           SPEAKER
+           =============================================== -->
 
-  <footer class="footer">
-    Where Leaders Are Made.
-  </footer>
-
-</div>
-
-
-<script>
-
-  const presets =
-    document.querySelectorAll(".preset");
-
-  const timer =
-    document.getElementById("timer");
-
-  const signal =
-    document.getElementById("signal");
-
-  const timingInfo =
-    document.getElementById("timingInfo");
-
-  const speakerInput =
-    document.getElementById("speaker");
-
-  const speakerName =
-    document.getElementById("speakerName");
-
-  const startButton =
-    document.getElementById("start");
-
-  const resetButton =
-    document.getElementById("reset");
-
-  const stopButton =
-    document.getElementById("stop");
-
-  const fullscreenButton =
-    document.getElementById("fullscreen");
-
-  const plus30Button =
-    document.getElementById("plus30");
-
-  const minus30Button =
-    document.getElementById("minus30");
-
-  const greenLight =
-    document.getElementById("greenLight");
-
-  const yellowLight =
-    document.getElementById("yellowLight");
-
-  const redLight =
-    document.getElementById("redLight");
-
-  const customGreen =
-    document.getElementById("customGreen");
-
-  const customYellow =
-    document.getElementById("customYellow");
-
-  const customRed =
-    document.getElementById("customRed");
-
-  const applyCustom =
-    document.getElementById("applyCustom");
+      <input
+        id="speaker"
+        class="speaker"
+        type="text"
+        placeholder="Speaker name (optional)"
+        autocomplete="off"
+      >
 
 
-  let elapsedSeconds = 0;
+      <!-- ===============================================
+           TIMER
+           =============================================== -->
 
-  let greenAt = 60;
-  let yellowAt = 90;
-  let redAt = 120;
-
-  let running = false;
-  let interval = null;
+      <section class="timer-card">
 
 
-  function formatTime(seconds) {
-
-    const minutes =
-      Math.floor(seconds / 60);
-
-    const secs =
-      seconds % 60;
-
-    return (
-      String(minutes).padStart(2, "0") +
-      ":" +
-      String(secs).padStart(2, "0")
-    );
-  }
+        <div
+          id="speakerName"
+          class="speaker-name">
+        </div>
 
 
-  function clearStates() {
+        <div
+          id="signal"
+          class="signal">
 
-    document.body.classList.remove(
-      "state-green",
-      "state-yellow",
-      "state-red",
-      "state-overtime"
-    );
+          READY
 
-    greenLight.classList.remove("active");
-    yellowLight.classList.remove("active");
-    redLight.classList.remove("active");
-  }
+        </div>
 
 
-  function updateDisplay() {
+        <div
+          id="timer"
+          class="timer">
 
-    clearStates();
+          00:00
 
-    timer.textContent =
-      formatTime(elapsedSeconds);
+        </div>
 
 
-    if (elapsedSeconds < greenAt) {
+        <div
+          id="timingInfo"
+          class="timing-info">
 
-      signal.textContent =
-        "READY";
+          Green at 01:00 · Yellow at 01:30 · Red at 02:00
 
-      timingInfo.textContent =
-        "Green at " +
-        formatTime(greenAt);
+        </div>
+
+
+        <!-- SIGNAL LIGHTS -->
+
+        <div class="lights">
+
+
+          <div
+            id="greenLight"
+            class="light green">
+          </div>
+
+
+          <div
+            id="yellowLight"
+            class="light yellow">
+          </div>
+
+
+          <div
+            id="redLight"
+            class="light red">
+          </div>
+
+
+        </div>
+
+
+      </section>
+
+
+      <!-- ===============================================
+           MAIN CONTROLS
+           =============================================== -->
+
+      <div class="controls">
+
+
+        <button
+          id="start"
+          class="control">
+
+          Start
+
+        </button>
+
+
+        <button
+          id="reset"
+          class="control maroon">
+
+          Reset
+
+        </button>
+
+
+        <button
+          id="fullscreen"
+          class="control gray">
+
+          Fullscreen
+
+        </button>
+
+
+        <button
+          id="stop"
+          class="control gray">
+
+          Stop
+
+        </button>
+
+
+      </div>
+
+
+      <!-- ===============================================
+           ADJUST TIME
+           =============================================== -->
+
+      <div class="adjust">
+
+
+        <button
+          id="minus30">
+
+          −30 sec
+
+        </button>
+
+
+        <button
+          id="plus30">
+
+          +30 sec
+
+        </button>
+
+
+      </div>
+
+
+      <!-- ===============================================
+           CUSTOM TIMING
+           =============================================== -->
+
+      <section class="custom">
+
+
+        <h2>
+          Custom Timing
+        </h2>
+
+
+        <div class="custom-grid">
+
+
+          <div class="field">
+
+            <label for="customGreen">
+              Green at (min)
+            </label>
+
+            <input
+              id="customGreen"
+              type="number"
+              min="0"
+              step="0.5"
+              value="5"
+            >
+
+          </div>
+
+
+          <div class="field">
+
+            <label for="customYellow">
+              Yellow at (min)
+            </label>
+
+            <input
+              id="customYellow"
+              type="number"
+              min="0"
+              step="0.5"
+              value="6"
+            >
+
+          </div>
+
+
+          <div class="field">
+
+            <label for="customRed">
+              Red at (min)
+            </label>
+
+            <input
+              id="customRed"
+              type="number"
+              min="0"
+              step="0.5"
+              value="7"
+            >
+
+          </div>
+
+
+          <button
+            id="applyCustom"
+            class="apply">
+
+            Apply
+
+          </button>
+
+
+        </div>
+
+
+      </section>
+
+
+    </main>
+
+
+    <!-- =================================================
+         FOOTER
+         ================================================= -->
+
+    <footer class="footer">
+
+      Where Leaders Are Made.
+
+    </footer>
+
+
+  </div>
+
+
+  <script>
+
+    /* =====================================================
+       ELEMENTS
+       ===================================================== */
+
+    const presets =
+      document.querySelectorAll(".preset");
+
+    const timer =
+      document.getElementById("timer");
+
+    const signal =
+      document.getElementById("signal");
+
+    const timingInfo =
+      document.getElementById("timingInfo");
+
+    const speakerInput =
+      document.getElementById("speaker");
+
+    const speakerName =
+      document.getElementById("speakerName");
+
+    const startButton =
+      document.getElementById("start");
+
+    const resetButton =
+      document.getElementById("reset");
+
+    const stopButton =
+      document.getElementById("stop");
+
+    const fullscreenButton =
+      document.getElementById("fullscreen");
+
+    const plus30Button =
+      document.getElementById("plus30");
+
+    const minus30Button =
+      document.getElementById("minus30");
+
+    const greenLight =
+      document.getElementById("greenLight");
+
+    const yellowLight =
+      document.getElementById("yellowLight");
+
+    const redLight =
+      document.getElementById("redLight");
+
+    const customGreen =
+      document.getElementById("customGreen");
+
+    const customYellow =
+      document.getElementById("customYellow");
+
+    const customRed =
+      document.getElementById("customRed");
+
+    const applyCustom =
+      document.getElementById("applyCustom");
+
+
+    /* =====================================================
+       TIMER STATE
+       ===================================================== */
+
+    let elapsedSeconds = 0;
+
+    let greenAt = 60;
+    let yellowAt = 90;
+    let redAt = 120;
+
+    let running = false;
+
+    let interval = null;
+
+    let lastTickTime = null;
+
+
+    /* =====================================================
+       FORMAT TIME
+       ===================================================== */
+
+    function formatTime(seconds) {
+
+      const minutes =
+        Math.floor(seconds / 60);
+
+      const secondsPart =
+        seconds % 60;
+
+      return (
+        String(minutes).padStart(2, "0") +
+        ":" +
+        String(secondsPart).padStart(2, "0")
+      );
 
     }
 
-    else if (elapsedSeconds < yellowAt) {
 
-      document.body.classList.add(
-        "state-green"
+    /* =====================================================
+       CLEAR SIGNAL STATES
+       ===================================================== */
+
+    function clearSignalStates() {
+
+      document.body.classList.remove(
+        "state-green",
+        "state-yellow",
+        "state-red",
+        "state-overtime"
       );
 
-      greenLight.classList.add(
+      greenLight.classList.remove(
         "active"
       );
 
-      signal.textContent =
-        "GREEN";
+      yellowLight.classList.remove(
+        "active"
+      );
 
-      timingInfo.textContent =
-        "Yellow at " +
-        formatTime(yellowAt) +
-        " · Red at " +
-        formatTime(redAt);
+      redLight.classList.remove(
+        "active"
+      );
 
     }
 
-    else if (elapsedSeconds < redAt) {
 
-      document.body.classList.add(
-        "state-yellow"
-      );
+    /* =====================================================
+       UPDATE DISPLAY
+       ===================================================== */
 
-      yellowLight.classList.add(
-        "active"
-      );
+    function updateDisplay() {
 
-      signal.textContent =
-        "YELLOW";
-
-      timingInfo.textContent =
-        "Red at " +
-        formatTime(redAt);
-
-    }
-
-    else {
-
-      document.body.classList.add(
-        "state-red"
-      );
-
-      redLight.classList.add(
-        "active"
-      );
-
-      signal.textContent =
-        "RED";
-
-      timingInfo.textContent =
-        "Time limit reached";
+      clearSignalStates();
 
 
-      if (elapsedSeconds > redAt) {
+      /* -----------------------------------------------
+         Stopwatch
+         ----------------------------------------------- */
 
-        document.body.classList.remove(
-          "state-red"
-        );
+      timer.textContent =
+        formatTime(elapsedSeconds);
+
+
+      /* -----------------------------------------------
+         Before Green
+         ----------------------------------------------- */
+
+      if (
+        elapsedSeconds < greenAt
+      ) {
+
+        signal.textContent =
+          "READY";
+
+        timingInfo.textContent =
+          "Green at " +
+          formatTime(greenAt);
+
+      }
+
+
+      /* -----------------------------------------------
+         Green
+         ----------------------------------------------- */
+
+      else if (
+        elapsedSeconds < yellowAt
+      ) {
 
         document.body.classList.add(
-          "state-overtime"
+          "state-green"
+        );
+
+        greenLight.classList.add(
+          "active"
         );
 
         signal.textContent =
-          "OVERTIME";
+          "GREEN";
 
         timingInfo.textContent =
-          "Over by " +
-          formatTime(
-            elapsedSeconds - redAt
+          "Yellow at " +
+          formatTime(yellowAt) +
+          " · Red at " +
+          formatTime(redAt);
+
+      }
+
+
+      /* -----------------------------------------------
+         Yellow
+         ----------------------------------------------- */
+
+      else if (
+        elapsedSeconds < redAt
+      ) {
+
+        document.body.classList.add(
+          "state-yellow"
+        );
+
+        yellowLight.classList.add(
+          "active"
+        );
+
+        signal.textContent =
+          "YELLOW";
+
+        timingInfo.textContent =
+          "Red at " +
+          formatTime(redAt);
+
+      }
+
+
+      /* -----------------------------------------------
+         Red
+         ----------------------------------------------- */
+
+      else {
+
+        document.body.classList.add(
+          "state-red"
+        );
+
+        redLight.classList.add(
+          "active"
+        );
+
+        signal.textContent =
+          "RED";
+
+        timingInfo.textContent =
+          "Time limit reached";
+
+
+        /* ---------------------------------------------
+           Overtime
+           --------------------------------------------- */
+
+        if (
+          elapsedSeconds > redAt
+        ) {
+
+          document.body.classList.remove(
+            "state-red"
           );
+
+          document.body.classList.add(
+            "state-overtime"
+          );
+
+          signal.textContent =
+            "OVERTIME";
+
+          timingInfo.textContent =
+            "Over by " +
+            formatTime(
+              elapsedSeconds - redAt
+            );
+
+        }
+
+      }
+
+
+      /* -----------------------------------------------
+         Speaker
+         ----------------------------------------------- */
+
+      speakerName.textContent =
+        speakerInput.value.trim();
+
+    }
+
+
+    /* =====================================================
+       ACCURATE TIMER TICK
+       ===================================================== */
+
+    function tick() {
+
+      if (!running) {
+        return;
+      }
+
+      const now =
+        Date.now();
+
+      const actualElapsed =
+        Math.floor(
+          (now - lastTickTime) / 1000
+        );
+
+      if (
+        actualElapsed > elapsedSeconds
+      ) {
+
+        elapsedSeconds =
+          actualElapsed;
+
+        updateDisplay();
 
       }
 
     }
 
 
-    speakerName.textContent =
-      speakerInput.value.trim();
+    /* =====================================================
+       START / PAUSE
+       ===================================================== */
 
-  }
+    function toggleTimer() {
+
+      if (running) {
+
+        running = false;
+
+        clearInterval(interval);
+
+        interval = null;
+
+        startButton.textContent =
+          "Resume";
+
+        return;
+
+      }
 
 
-  function tick() {
+      running = true;
 
-    elapsedSeconds++;
+      lastTickTime =
+        Date.now() -
+        (elapsedSeconds * 1000);
 
-    updateDisplay();
+      startButton.textContent =
+        "Pause";
 
-  }
+      interval =
+        setInterval(
+          tick,
+          200
+        );
+
+    }
 
 
-  function toggleTimer() {
+    /* =====================================================
+       STOP
+       ===================================================== */
 
-    if (running) {
+    function stopTimer() {
 
       running = false;
 
@@ -1088,314 +1638,362 @@ body.state-overtime .controls button:first-child {
       interval = null;
 
       startButton.textContent =
-        "Resume";
-
-      return;
+        "Start";
 
     }
 
 
-    running = true;
+    /* =====================================================
+       RESET
+       ===================================================== */
 
-    startButton.textContent =
-      "Pause";
+    function resetTimer() {
 
-    interval =
-      setInterval(
-        tick,
-        1000
-      );
+      stopTimer();
 
-  }
+      elapsedSeconds = 0;
 
+      updateDisplay();
 
-  function stopTimer() {
-
-    running = false;
-
-    clearInterval(interval);
-
-    interval = null;
-
-    startButton.textContent =
-      "Start";
-
-  }
+    }
 
 
-  function resetTimer() {
+    /* =====================================================
+       APPLY TIMING
+       ===================================================== */
 
-    stopTimer();
-
-    elapsedSeconds = 0;
-
-    updateDisplay();
-
-  }
-
-
-  function applyTiming(
-    green,
-    yellow,
-    red
-  ) {
-
-    if (
-      green < 0 ||
-      yellow <= green ||
-      red <= yellow
+    function applyTiming(
+      green,
+      yellow,
+      red
     ) {
 
-      alert(
-        "Please make sure Green < Yellow < Red."
-      );
+      if (
+        green < 0 ||
+        yellow <= green ||
+        red <= yellow
+      ) {
 
-      return;
+        alert(
+          "Please make sure Green < Yellow < Red."
+        );
+
+        return false;
+
+      }
+
+      greenAt = green;
+      yellowAt = yellow;
+      redAt = red;
+
+      resetTimer();
+
+      return true;
 
     }
 
-    greenAt = green;
-    yellowAt = yellow;
-    redAt = red;
 
-    resetTimer();
+    /* =====================================================
+       PRESETS
+       ===================================================== */
 
-  }
+    presets.forEach(
+      (preset) => {
+
+        preset.addEventListener(
+          "click",
+          () => {
+
+            presets.forEach(
+              (button) => {
+
+                button.classList.remove(
+                  "active"
+                );
+
+              }
+            );
 
 
-  presets.forEach(
-    (preset) => {
+            preset.classList.add(
+              "active"
+            );
 
-      preset.addEventListener(
-        "click",
-        () => {
 
-          presets.forEach(
-            (button) =>
-              button.classList.remove(
-                "active"
+            applyTiming(
+              Number(
+                preset.dataset.green
+              ),
+              Number(
+                preset.dataset.yellow
+              ),
+              Number(
+                preset.dataset.red
               )
+            );
+
+          }
+        );
+
+      }
+    );
+
+
+    /* =====================================================
+       START
+       ===================================================== */
+
+    startButton.addEventListener(
+      "click",
+      toggleTimer
+    );
+
+
+    /* =====================================================
+       STOP
+       ===================================================== */
+
+    stopButton.addEventListener(
+      "click",
+      stopTimer
+    );
+
+
+    /* =====================================================
+       RESET
+       ===================================================== */
+
+    resetButton.addEventListener(
+      "click",
+      resetTimer
+    );
+
+
+    /* =====================================================
+       PLUS 30
+       ===================================================== */
+
+    plus30Button.addEventListener(
+      "click",
+      () => {
+
+        elapsedSeconds += 30;
+
+        if (running) {
+
+          lastTickTime =
+            Date.now() -
+            (elapsedSeconds * 1000);
+
+        }
+
+        updateDisplay();
+
+      }
+    );
+
+
+    /* =====================================================
+       MINUS 30
+       ===================================================== */
+
+    minus30Button.addEventListener(
+      "click",
+      () => {
+
+        elapsedSeconds =
+          Math.max(
+            0,
+            elapsedSeconds - 30
           );
 
-          preset.classList.add(
-            "active"
-          );
+        if (running) {
 
-          applyTiming(
-            Number(
-              preset.dataset.green
-            ),
-            Number(
-              preset.dataset.yellow
-            ),
-            Number(
-              preset.dataset.red
-            )
+          lastTickTime =
+            Date.now() -
+            (elapsedSeconds * 1000);
+
+        }
+
+        updateDisplay();
+
+      }
+    );
+
+
+    /* =====================================================
+       FULLSCREEN
+       ===================================================== */
+
+    fullscreenButton.addEventListener(
+      "click",
+      async () => {
+
+        try {
+
+          if (
+            !document.fullscreenElement
+          ) {
+
+            await document.documentElement
+              .requestFullscreen();
+
+          } else {
+
+            await document.exitFullscreen();
+
+          }
+
+        } catch (error) {
+
+          console.log(
+            "Fullscreen unavailable:",
+            error
           );
 
         }
-      );
 
-    }
-  );
-
-
-  startButton.addEventListener(
-    "click",
-    toggleTimer
-  );
+      }
+    );
 
 
-  resetButton.addEventListener(
-    "click",
-    resetTimer
-  );
+    /* =====================================================
+       FULLSCREEN STATE
+       ===================================================== */
 
+    document.addEventListener(
+      "fullscreenchange",
+      () => {
 
-  stopButton.addEventListener(
-    "click",
-    stopTimer
-  );
+        const active =
+          Boolean(
+            document.fullscreenElement
+          );
 
-
-  plus30Button.addEventListener(
-    "click",
-    () => {
-
-      elapsedSeconds += 30;
-
-      updateDisplay();
-
-    }
-  );
-
-
-  minus30Button.addEventListener(
-    "click",
-    () => {
-
-      elapsedSeconds =
-        Math.max(
-          0,
-          elapsedSeconds - 30
+        document.body.classList.toggle(
+          "fullscreen",
+          active
         );
 
-      updateDisplay();
+        fullscreenButton.textContent =
+          active
+            ? "Exit Fullscreen"
+            : "Fullscreen";
 
-    }
-  );
+      }
+    );
 
 
-  fullscreenButton.addEventListener(
-    "click",
-    async () => {
+    /* =====================================================
+       SPEAKER NAME
+       ===================================================== */
 
-      try {
+    speakerInput.addEventListener(
+      "input",
+      updateDisplay
+    );
+
+
+    /* =====================================================
+       CUSTOM TIMING
+       ===================================================== */
+
+    applyCustom.addEventListener(
+      "click",
+      () => {
+
+        const green =
+          Number(
+            customGreen.value
+          ) * 60;
+
+        const yellow =
+          Number(
+            customYellow.value
+          ) * 60;
+
+        const red =
+          Number(
+            customRed.value
+          ) * 60;
+
+
+        presets.forEach(
+          (button) =>
+            button.classList.remove(
+              "active"
+            )
+        );
+
+
+        applyTiming(
+          green,
+          yellow,
+          red
+        );
+
+      }
+    );
+
+
+    /* =====================================================
+       KEYBOARD SHORTCUTS
+       ===================================================== */
+
+    document.addEventListener(
+      "keydown",
+      (event) => {
 
         if (
-          !document.fullscreenElement
+          event.target.tagName === "INPUT"
+        ) {
+          return;
+        }
+
+
+        if (
+          event.code === "Space"
         ) {
 
-          await document.documentElement
-            .requestFullscreen();
+          event.preventDefault();
+
+          toggleTimer();
 
         }
 
-        else {
 
-          await document.exitFullscreen();
+        if (
+          event.code === "KeyR"
+        ) {
+
+          resetTimer();
+
+        }
+
+
+        if (
+          event.code === "KeyF"
+        ) {
+
+          fullscreenButton.click();
 
         }
 
       }
-
-      catch (error) {
-
-        console.log(
-          "Fullscreen unavailable:",
-          error
-        );
-
-      }
-
-    }
-  );
+    );
 
 
-  document.addEventListener(
-    "fullscreenchange",
-    () => {
+    /* =====================================================
+       INITIALIZE
+       ===================================================== */
 
-      const active =
-        Boolean(
-          document.fullscreenElement
-        );
+    applyTiming(
+      60,
+      90,
+      120
+    );
 
-      document.body.classList.toggle(
-        "fullscreen",
-        active
-      );
-
-      fullscreenButton.textContent =
-        active
-          ? "Exit Fullscreen"
-          : "Fullscreen";
-
-    }
-  );
-
-
-  speakerInput.addEventListener(
-    "input",
-    updateDisplay
-  );
-
-
-  applyCustom.addEventListener(
-    "click",
-    () => {
-
-      const green =
-        Number(
-          customGreen.value
-        ) * 60;
-
-      const yellow =
-        Number(
-          customYellow.value
-        ) * 60;
-
-      const red =
-        Number(
-          customRed.value
-        ) * 60;
-
-
-      presets.forEach(
-        (button) =>
-          button.classList.remove(
-            "active"
-          )
-      );
-
-
-      applyTiming(
-        green,
-        yellow,
-        red
-      );
-
-    }
-  );
-
-
-  document.addEventListener(
-    "keydown",
-    (event) => {
-
-      if (
-        event.target.tagName === "INPUT"
-      ) {
-        return;
-      }
-
-      if (
-        event.code === "Space"
-      ) {
-
-        event.preventDefault();
-
-        toggleTimer();
-
-      }
-
-      if (
-        event.code === "KeyR"
-      ) {
-
-        resetTimer();
-
-      }
-
-      if (
-        event.code === "KeyF"
-      ) {
-
-        fullscreenButton.click();
-
-      }
-
-    }
-  );
-
-
-  applyTiming(
-    60,
-    90,
-    120
-  );
-
-</script>
+  </script>
 
 </body>
 </html>
