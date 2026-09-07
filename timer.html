@@ -1,1 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <title>Toastmasters Meeting Timer</title>
+
+  <meta
+    name="description"
+    content="Toastmasters meeting timer for Table Topics, speeches, evaluations and custom timing."
+  >
+
+  <style>
+    :root {
+      --loyal-blue: #004165;
+      --true-maroon: #772432;
+      --cool-gray: #A9B2B1;
+      --dark-gray: #333333;
+      --light-gray: #F4F5F5;
+      --white: #FFFFFF;
+      --warning: #E6A817;
+      --danger: #C62828;
+      --success: #4F7D44;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Source Sans 3", "Source Sans Pro", Arial, sans-serif;
+      background: var(--light-gray);
+      color: var(--dark-gray);
+      display: flex;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .timer-app {
+      width: min(900px, 100%);
+    }
+
+    .brand-bar {
+      background: var(--loyal-blue);
+      color: var(--white);
+      padding: 20px 24px;
+      text-align: center;
+    }
+
+    .brand-bar h1 {
+      margin: 0;
+      font-size: clamp(24px, 5vw, 38px);
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .brand-bar p {
+      margin: 5px 0 0;
+      font-size: 16px;
+      opacity: 0.95;
+    }
+
+    .content {
+      background: var(--white);
+      padding: 24px;
+    }
+
+    .presets {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .preset {
+      border: 2px solid var(--loyal-blue);
+      background: var(--white);
+      color: var(--loyal-blue);
+      padding: 14px 10px;
+      cursor: pointer;
+      font: inherit;
+      font-weight: 700;
+      min-height: 70px;
+      transition: 0.15s ease;
+    }
+
+    .preset:hover {
+      background: #eef3f5;
+    }
+
+    .preset.active {
+      background: var(--loyal-blue);
+      color: var(--white);
+    }
+
+    .preset span {
+      display: block;
+      margin-top: 4px;
+      font-size: 14px;
+      font-weight: 400;
+    }
+
+    .speaker-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .speaker-input {
+      border: 2px solid var(--cool-gray);
+      padding: 14px;
+      font: inherit;
+      font-size: 18px;
+      outline: none;
+    }
+
+    .speaker-input:focus {
+      border-color: var(--loyal-blue);
+    }
+
+    .timer-card {
+      border: 8px solid var(--loyal-blue);
+      padding: 30px 20px;
+      text-align: center;
+      margin-bottom: 20px;
+      transition: border-color 0.2s ease;
+    }
+
+    .status-label {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--loyal-blue);
+      margin-bottom: 10px;
+      min-height: 30px;
+    }
+
+    .time {
+      font-family: "Source Sans 3", "Source Sans Pro", Arial, sans-serif;
+      font-size: clamp(88px, 18vw, 170px);
+      line-height: 0.95;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      font-variant-numeric: tabular-nums;
+      color: var(--loyal-blue);
+    }
+
+    .substatus {
+      margin-top: 14px;
+      font-size: 18px;
+      color: #555;
+      min-height: 28px;
+    }
+
+    .controls {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .control {
+      border: none;
+      padding: 15px 12px;
+      font: inherit;
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+      background: var(--loyal-blue);
+      color: var(--white);
+    }
+
+    .control:hover {
+      opacity: 0.92;
+    }
+
+    .control.secondary {
+      background: var(--true-maroon);
+    }
+
+    .control.light {
+      background: var(--cool-gray);
+      color: var(--dark-gray);
+    }
+
+    .adjustments {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .adjust {
+      border: 2px solid var(--cool-gray);
+      background: var(--white);
+      color: var(--dark-gray);
+      padding: 12px;
+      cursor: pointer;
+      font: inherit;
+      font-weight: 700;
+    }
+
+    .custom {
+      border-top: 1px solid #ddd;
+      padding-top: 20px;
+    }
+
+    .custom h2 {
+      margin: 0 0 12px;
+      color: var(--loyal-blue);
+      font-size: 22px;
+    }
+
+    .custom-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr auto;
+      gap: 10px;
+      align-items: end;
+    }
+
+    .field label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 700;
+    }
+
+    .field input {
+      width: 100%;
+      border: 2px solid var(--cool-gray);
+      padding: 12px;
+      font: inherit;
+      font-size: 18px;
+    }
+
+    .apply-custom {
+      border: none;
+      background: var(--true-maroon);
+      color: var(--white);
+      padding: 13px 18px;
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 16px;
+      background: var(--loyal-blue);
+      color: var(--white);
+      font-size: 14px;
+    }
+
+    body.warning .timer-card {
+      border-color: var(--warning);
+    }
+
+    body.warning .time,
+    body.warning .status-label {
+      color: var(--warning);
+    }
+
+    body.danger .timer-card {
+      border-color: var(--danger);
+    }
+
+    body.danger .time,
+    body.danger .status-label {
+      color: var(--danger);
+    }
+
+    body.finished .timer-card {
+      border-color: var(--true-maroon);
+    }
+
+    body.finished .time,
+    body.finished .status-label {
+      color: var(--true-maroon);
+    }
+
+    @media (max-width: 700px) {
+      .presets {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .controls {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .speaker-row {
+        grid-template-columns: 1fr;
+      }
+
+      .custom-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .apply-custom {
+        grid-column: 1 / -1;
+      }
+
+      .content {
+        padding: 16px;
+      }
+    }
+
+    @media (max-width: 430px) {
+      body {
+        padding: 0;
+      }
+
+      .content {
+        padding: 12px;
+      }
+
+      .brand-bar {
+        padding: 16px;
+      }
+
+      .time {
+        font-size: 78px;
+      }
+
+      .custom-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .apply-custom {
+        grid-column: auto;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="timer-app">
+
+    <header class="brand-bar">
+      <h1>Toastmasters Meeting Timer</h1>
+      <p>Jaipur Speakers Toastmasters Club</p>
+    </header>
+
+    <section class="content">
+
+      <div class="presets">
+
+        <button class="preset active" data-min="1" data-max="2">
+          Table Topics
+          <span>1–2 min</span>
+        </button>
+
+        <button class="preset" data-min="4" data-max="6">
+          Icebreaker
+          <span>4–6 min</span>
+        </button>
+
+        <button class="preset" data-min="5" data-max="7">
+          Prepared Speech
+          <span>5–7 min</span>
+        </button>
+
+        <button class="preset" data-min="2" data-max="3">
+          Evaluation
+          <span>2–3 min</span>
+        </button>
+
+      </div>
+
+      <div class="speaker-row">
+        <input
+          id="speaker"
+          class="speaker-input"
+          type="text"
+          placeholder="Speaker name (optional)"
+          aria-label="Speaker name"
+        >
+      </div>
+
+      <div class="timer-card">
+
+        <div id="status" class="status-label">
+          Ready
+        </div>
+
+        <div id="time" class="time">
+          01:00
+        </div>
+
+        <div id="substatus" class="substatus">
+          Green begins at 1:00
+        </div>
+
+      </div>
+
+      <div class="controls">
+
+        <button id="startPause" class="control">
+          Start
+        </button>
+
+        <button id="reset" class="control secondary">
+          Reset
+        </button>
+
+        <button id="fullscreen" class="control light">
+          Fullscreen
+        </button>
+
+        <button id="clearSpeaker" class="control light">
+          Clear Name
+        </button>
+
+      </div>
+
+      <div class="adjustments">
+
+        <button id="plus30" class="adjust">
+          +30 seconds
+        </button>
+
+        <button id="minus30" class="adjust">
+          −30 seconds
+        </button>
+
+      </div>
+
+      <section class="custom">
+
+        <h2>Custom Timer</h2>
+
+        <div class="custom-grid">
+
+          <div class="field">
+            <label for="customMin">Minutes</label>
+            <input id="customMin" type="number" min="0" max="180" value="5">
+          </div>
+
+          <div class="field">
+            <label for="customSec">Seconds</label>
+            <input id="customSec" type="number" min="0" max="59" value="0">
+          </div>
+
+          <button id="applyCustom" class="apply-custom">
+            Use Custom Time
+          </button>
+
+        </div>
+
+      </section>
+
+    </section>
+
+    <footer class="footer">
+      Where Leaders Are Made.
+    </footer>
+
+  </main>
+
+  <script>
+    const presets = document.querySelectorAll(".preset");
+    const timeDisplay = document.getElementById("time");
+    const statusDisplay = document.getElementById("status");
+    const substatusDisplay = document.getElementById("substatus");
+
+    const startPauseButton = document.getElementById("startPause");
+    const resetButton = document.getElementById("reset");
+    const fullscreenButton = document.getElementById("fullscreen");
+
+    const plus30Button = document.getElementById("plus30");
+    const minus30Button = document.getElementById("minus30");
+
+    const speakerInput = document.getElementById("speaker");
+    const clearSpeakerButton = document.getElementById("clearSpeaker");
+
+    const customMin = document.getElementById("customMin");
+    const customSec = document.getElementById("customSec");
+    const applyCustomButton = document.getElementById("applyCustom");
+
+    let interval = null;
+    let totalSeconds = 60;
+    let remainingSeconds = 60;
+    let minSeconds = 60;
+    let maxSeconds = 120;
+    let running = false;
+
+    function formatTime(seconds) {
+      const negative = seconds < 0;
+      const absolute = Math.abs(seconds);
+
+      const mins = Math.floor(absolute / 60);
+      const secs = absolute % 60;
+
+      const formatted =
+        String(mins).padStart(2, "0") +
+        ":" +
+        String(secs).padStart(2, "0");
+
+      return negative ? "-" + formatted : formatted;
+    }
+
+    function updateDisplay() {
+      timeDisplay.textContent = formatTime(remainingSeconds);
+
+      const elapsed = totalSeconds - remainingSeconds;
+
+      document.body.classList.remove(
+        "warning",
+        "danger",
+        "finished"
+      );
+
+      if (remainingSeconds <= 0) {
+
+        statusDisplay.textContent = "Time's up";
+        substatusDisplay.textContent = "Maximum time reached";
+
+        document.body.classList.add("finished");
+
+      } else if (elapsed >= maxSeconds) {
+
+        statusDisplay.textContent = "Over time";
+        substatusDisplay.textContent = "Please conclude your speech";
+
+        document.body.classList.add("danger");
+
+      } else if (elapsed >= minSeconds) {
+
+        statusDisplay.textContent = "Yellow";
+        substatusDisplay.textContent =
+          "Warning period • Maximum " +
+          formatTime(maxSeconds);
+
+        document.body.classList.add("warning");
+
+      } else {
+
+        statusDisplay.textContent = "Green";
+        substatusDisplay.textContent =
+          "Green • Minimum " +
+          formatTime(minSeconds);
+      }
+    }
+
+    function tick() {
+
+      remainingSeconds--;
+
+      updateDisplay();
+
+      if (remainingSeconds <= 0) {
+        stopTimer();
+      }
+    }
+
+    function startTimer() {
+
+      if (running) {
+        stopTimer();
+        return;
+      }
+
+      running = true;
+      startPauseButton.textContent = "Pause";
+
+      interval = setInterval(tick, 1000);
+    }
+
+    function stopTimer() {
+
+      running = false;
+
+      startPauseButton.textContent = "Start";
+
+      if (interval) {
+        clearInterval(interval);
+        interval = null;
+      }
+    }
+
+    function resetTimer() {
+
+      stopTimer();
+
+      remainingSeconds = totalSeconds;
+
+      updateDisplay();
+    }
+
+    function setTimer(minimum, maximum) {
+
+      stopTimer();
+
+      minSeconds = minimum * 60;
+      maxSeconds = maximum * 60;
+
+      totalSeconds = minSeconds;
+      remainingSeconds = totalSeconds;
+
+      updateDisplay();
+    }
+
+    presets.forEach((preset) => {
+
+      preset.addEventListener("click", () => {
+
+        presets.forEach((button) =>
+          button.classList.remove("active")
+        );
+
+        preset.classList.add("active");
+
+        const min = Number(preset.dataset.min);
+        const max = Number(preset.dataset.max);
+
+        setTimer(min, max);
+
+      });
+
+    });
+
+    startPauseButton.addEventListener("click", startTimer);
+
+    resetButton.addEventListener("click", resetTimer);
+
+    plus30Button.addEventListener("click", () => {
+
+      remainingSeconds += 30;
+
+      updateDisplay();
+
+    });
+
+    minus30Button.addEventListener("click", () => {
+
+      remainingSeconds = Math.max(
+        0,
+        remainingSeconds - 30
+      );
+
+      updateDisplay();
+
+    });
+
+    clearSpeakerButton.addEventListener("click", () => {
+      speakerInput.value = "";
+      speakerInput.focus();
+    });
+
+    fullscreenButton.addEventListener("click", async () => {
+
+      try {
+
+        if (!document.fullscreenElement) {
+          await document.documentElement.requestFullscreen();
+          fullscreenButton.textContent = "Exit Fullscreen";
+        } else {
+          await document.exitFullscreen();
+          fullscreenButton.textContent = "Fullscreen";
+        }
+
+      } catch (error) {
+        console.log("Fullscreen unavailable:", error);
+      }
+
+    });
+
+    applyCustomButton.addEventListener("click", () => {
+
+      const minutes = Math.max(
+        0,
+        Number(customMin.value) || 0
+      );
+
+      const seconds = Math.min(
+        59,
+        Math.max(0, Number(customSec.value) || 0)
+      );
+
+      const total = minutes * 60 + seconds;
+
+      if (total <= 0) {
+        alert("Please enter a time greater than zero.");
+        return;
+      }
+
+      presets.forEach((button) =>
+        button.classList.remove("active")
+      );
+
+      stopTimer();
+
+      minSeconds = total;
+      maxSeconds = total;
+
+      totalSeconds = total;
+      remainingSeconds = total;
+
+      updateDisplay();
+
+    });
+
+    document.addEventListener("fullscreenchange", () => {
+
+      fullscreenButton.textContent =
+        document.fullscreenElement
+          ? "Exit Fullscreen"
+          : "Fullscreen";
+
+    });
+
+    speakerInput.addEventListener("input", () => {
+
+      const name = speakerInput.value.trim();
+
+      if (name) {
+        document.querySelector(".brand-bar p").textContent =
+          name + " • Jaipur Speakers Toastmasters Club";
+      } else {
+        document.querySelector(".brand-bar p").textContent =
+          "Jaipur Speakers Toastmasters Club";
+      }
+
+    });
+
+    // Initial state
+    setTimer(1, 2);
+  </script>
+
+</body>
+</html>
