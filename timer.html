@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="theme-color" content="#004165">
 
   <title>Toastmasters Timer | Jaipur Speakers</title>
@@ -15,186 +15,230 @@
       --white: #FFFFFF;
       --black: #222222;
 
-      --green: #3F7D20;
-      --yellow: #D99A00;
-      --red: #C62828;
+      --signal-green: #3F7D20;
+      --signal-yellow: #D99A00;
+      --signal-red: #C62828;
+
+      --light-bg: #F4F5F5;
     }
 
     * {
       box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
     }
 
     html,
     body {
-      margin: 0;
+      width: 100%;
       min-height: 100%;
+      margin: 0;
     }
 
     body {
       font-family: "Source Sans 3", "Source Sans Pro", Arial, sans-serif;
-      background: #F4F5F5;
+      background: var(--light-bg);
       color: var(--black);
-      padding: 20px;
+      transition: background-color 0.3s ease;
     }
+
+    /* =====================================================
+       NORMAL VIEW
+       ===================================================== */
 
     .app {
-      width: min(1100px, 100%);
-      margin: auto;
-      background: var(--white);
-    }
+      width: 100%;
+      min-height: 100vh;
+      max-width: 900px;
+      margin: 0 auto;
 
-    /* Header */
+      background: var(--white);
+
+      transition:
+        background-color 0.3s ease,
+        color 0.3s ease;
+    }
 
     .header {
       background: var(--loyal-blue);
-      color: white;
-      padding: 22px 24px;
+      color: var(--white);
       text-align: center;
+      padding: 18px 12px;
     }
 
     .header h1 {
       margin: 0;
-      font-size: clamp(25px, 4vw, 40px);
+      font-size: clamp(23px, 6vw, 38px);
       line-height: 1.05;
-      font-weight: 700;
     }
 
     .header p {
-      margin: 7px 0 0;
-      font-size: 17px;
+      margin: 6px 0 0;
+      font-size: 16px;
     }
-
-    /* Main */
 
     .main {
-      padding: 24px;
+      width: 100%;
+      padding: 14px;
+
+      background: var(--white);
+
+      transition: background-color 0.3s ease;
     }
 
-    /* Presets */
+    /* =====================================================
+       PRESETS
+       ===================================================== */
 
     .presets {
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 10px;
-      margin-bottom: 18px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-bottom: 12px;
     }
 
     .preset {
+      min-height: 62px;
+      padding: 9px 6px;
+
       border: 2px solid var(--loyal-blue);
-      background: white;
+
+      background: var(--white);
       color: var(--loyal-blue);
-      padding: 13px 8px;
-      cursor: pointer;
+
       font: inherit;
+      font-size: 14px;
       font-weight: 700;
-      min-height: 72px;
-    }
 
-    .preset:hover {
-      background: #eef3f5;
-    }
-
-    .preset span {
-      display: block;
-      margin-top: 4px;
-      font-size: 13px;
-      font-weight: 400;
+      cursor: pointer;
+      touch-action: manipulation;
     }
 
     .preset.active {
       background: var(--loyal-blue);
-      color: white;
+      color: var(--white);
     }
 
-    /* Speaker */
+    .preset span {
+      display: block;
+      margin-top: 3px;
+      font-size: 11px;
+      font-weight: 400;
+    }
+
+    /* =====================================================
+       SPEAKER
+       ===================================================== */
 
     .speaker {
       width: 100%;
-      padding: 14px;
+      margin-bottom: 12px;
+      padding: 13px;
+
       border: 2px solid var(--cool-gray);
+
+      background: var(--white);
+      color: var(--black);
+
       font: inherit;
-      font-size: 18px;
-      margin-bottom: 18px;
+      font-size: 17px;
+
       outline: none;
     }
 
-    .speaker:focus {
-      border-color: var(--loyal-blue);
-    }
+    /* =====================================================
+       TIMER
+       ===================================================== */
 
-    /* Timer */
+    .timer-card {
+      width: 100%;
+      padding: 22px 10px 24px;
 
-    .timer-area {
-      border: 10px solid var(--loyal-blue);
-      padding: 25px 20px 30px;
+      border: 7px solid var(--loyal-blue);
+
+      background: var(--white);
+
       text-align: center;
-      transition: border-color 0.2s ease;
+
+      transition:
+        background-color 0.3s ease,
+        border-color 0.3s ease,
+        color 0.3s ease;
     }
 
     .speaker-name {
-      font-size: 24px;
-      font-weight: 700;
+      min-height: 28px;
+
       color: var(--loyal-blue);
-      min-height: 32px;
+
+      font-size: 20px;
+      font-weight: 700;
     }
 
-    .signal-name {
-      margin-top: 5px;
-      text-transform: uppercase;
-      font-size: 20px;
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      min-height: 30px;
+    .signal {
+      min-height: 29px;
+      margin-top: 4px;
+
       color: var(--loyal-blue);
+
+      font-size: 18px;
+      font-weight: 800;
+
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
     }
 
     .timer {
-      font-size: clamp(90px, 18vw, 180px);
-      line-height: 0.90;
-      font-weight: 800;
-      font-variant-numeric: tabular-nums;
-      color: var(--loyal-blue);
-      margin: 20px 0;
-      letter-spacing: 0.02em;
-    }
+      margin: 10px 0;
 
-    .timer.overtime {
-      color: var(--true-maroon);
+      color: var(--loyal-blue);
+
+      font-size: clamp(82px, 21vw, 170px);
+      font-weight: 800;
+      line-height: 0.9;
+
+      font-variant-numeric: tabular-nums;
+      letter-spacing: 0.015em;
     }
 
     .timing-info {
-      font-size: 17px;
+      min-height: 25px;
+
       color: #555;
-      min-height: 28px;
+      font-size: 15px;
     }
 
-    /* Lights */
+    /* =====================================================
+       SIGNAL LIGHTS
+       ===================================================== */
 
     .lights {
       display: flex;
       justify-content: center;
-      gap: 16px;
-      margin-top: 22px;
+      gap: 12px;
+
+      margin-top: 18px;
     }
 
     .light {
-      width: 64px;
-      height: 64px;
+      width: 46px;
+      height: 46px;
+
+      border: 3px solid currentColor;
       border-radius: 50%;
-      opacity: 0.18;
-      border: 4px solid currentColor;
+
+      opacity: 0.16;
     }
 
     .light.green {
-      color: var(--green);
+      color: var(--signal-green);
     }
 
     .light.yellow {
-      color: var(--yellow);
+      color: var(--signal-yellow);
     }
 
     .light.red {
-      color: var(--red);
+      color: var(--signal-red);
     }
 
     .light.active {
@@ -202,40 +246,44 @@
     }
 
     .light.green.active {
-      background: var(--green);
+      background: var(--signal-green);
     }
 
     .light.yellow.active {
-      background: var(--yellow);
+      background: var(--signal-yellow);
     }
 
     .light.red.active {
-      background: var(--red);
+      background: var(--signal-red);
     }
 
-    /* Controls */
+    /* =====================================================
+       CONTROLS
+       ===================================================== */
 
     .controls {
       display: grid;
       grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 10px;
-      margin-top: 18px;
+      gap: 8px;
+
+      margin-top: 10px;
     }
 
     button.control {
-      border: 0;
-      padding: 15px 12px;
-      cursor: pointer;
-      font: inherit;
-      font-size: 17px;
-      font-weight: 700;
-      background: var(--loyal-blue);
-      color: white;
-    }
+      min-height: 52px;
+      padding: 12px 7px;
 
-    button.control:hover,
-    .apply:hover {
-      opacity: 0.92;
+      border: 0;
+
+      background: var(--loyal-blue);
+      color: var(--white);
+
+      font: inherit;
+      font-size: 15px;
+      font-weight: 700;
+
+      cursor: pointer;
+      touch-action: manipulation;
     }
 
     button.maroon {
@@ -247,127 +295,213 @@
       color: var(--black);
     }
 
-    /* Fine controls */
-
     .adjust {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-top: 10px;
+      gap: 8px;
+
+      margin-top: 8px;
     }
 
     .adjust button {
-      padding: 12px;
+      min-height: 48px;
+
       border: 2px solid var(--cool-gray);
-      background: white;
+
+      background: var(--white);
+      color: var(--black);
+
       font: inherit;
       font-weight: 700;
+
       cursor: pointer;
+      touch-action: manipulation;
     }
 
-    /* Custom timer */
+    /* =====================================================
+       CUSTOM
+       ===================================================== */
 
     .custom {
-      margin-top: 24px;
-      padding-top: 22px;
+      margin-top: 20px;
+      padding-top: 18px;
+
       border-top: 1px solid #ddd;
     }
 
     .custom h2 {
+      margin: 0 0 10px;
+
       color: var(--loyal-blue);
-      margin: 0 0 12px;
+
+      font-size: 20px;
     }
 
     .custom-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr auto;
-      gap: 10px;
+      grid-template-columns: repeat(3, 1fr) auto;
+      gap: 8px;
+
       align-items: end;
     }
 
     .field label {
       display: block;
-      margin-bottom: 5px;
+
+      margin-bottom: 4px;
+
+      font-size: 13px;
       font-weight: 700;
     }
 
     .field input {
       width: 100%;
-      padding: 12px;
-      font: inherit;
-      font-size: 17px;
+
+      padding: 10px;
+
       border: 2px solid var(--cool-gray);
+
+      font: inherit;
+      font-size: 16px;
     }
 
     .apply {
-      padding: 13px 18px;
+      min-height: 45px;
+
+      padding: 10px 15px;
+
       border: 0;
+
       background: var(--true-maroon);
-      color: white;
+      color: var(--white);
+
       font: inherit;
       font-weight: 700;
+
       cursor: pointer;
     }
 
-    /* Footer */
-
     .footer {
+      padding: 12px;
+
       background: var(--loyal-blue);
-      color: white;
+      color: var(--white);
+
       text-align: center;
-      padding: 14px;
-      font-size: 14px;
+
+      font-size: 13px;
     }
 
-    /* Signal states */
+    /* =====================================================
+       WHOLE PAGE SIGNAL STATES
+       ===================================================== */
 
-    body.state-green .timer-area {
-      border-color: var(--green);
+    body.state-green,
+    body.state-yellow,
+    body.state-red,
+    body.state-overtime {
+      min-height: 100vh;
     }
 
+    /* GREEN */
+
+    body.state-green {
+      background: var(--signal-green);
+    }
+
+    body.state-green .app,
+    body.state-green .main {
+      background: var(--signal-green);
+    }
+
+    body.state-green .timer-card {
+      background: var(--signal-green);
+      border-color: var(--white);
+    }
+
+    body.state-green .speaker-name,
+    body.state-green .signal,
     body.state-green .timer,
-    body.state-green .signal-name {
-      color: var(--green);
+    body.state-green .timing-info {
+      color: var(--white);
     }
 
-    body.state-yellow .timer-area {
-      border-color: var(--yellow);
+    /* YELLOW */
+
+    body.state-yellow {
+      background: var(--signal-yellow);
     }
 
+    body.state-yellow .app,
+    body.state-yellow .main {
+      background: var(--signal-yellow);
+    }
+
+    body.state-yellow .timer-card {
+      background: var(--signal-yellow);
+      border-color: var(--white);
+    }
+
+    body.state-yellow .speaker-name,
+    body.state-yellow .signal,
     body.state-yellow .timer,
-    body.state-yellow .signal-name {
-      color: var(--yellow);
+    body.state-yellow .timing-info {
+      color: var(--white);
     }
 
-    body.state-red .timer-area {
-      border-color: var(--red);
+    /* RED */
+
+    body.state-red {
+      background: var(--signal-red);
     }
 
+    body.state-red .app,
+    body.state-red .main {
+      background: var(--signal-red);
+    }
+
+    body.state-red .timer-card {
+      background: var(--signal-red);
+      border-color: var(--white);
+    }
+
+    body.state-red .speaker-name,
+    body.state-red .signal,
     body.state-red .timer,
-    body.state-red .signal-name {
-      color: var(--red);
+    body.state-red .timing-info {
+      color: var(--white);
     }
 
-    body.state-overtime .timer-area {
-      border-color: var(--true-maroon);
+    /* OVERTIME */
+
+    body.state-overtime {
+      background: var(--true-maroon);
     }
 
+    body.state-overtime .app,
+    body.state-overtime .main {
+      background: var(--true-maroon);
+    }
+
+    body.state-overtime .timer-card {
+      background: var(--true-maroon);
+      border-color: var(--white);
+    }
+
+    body.state-overtime .speaker-name,
+    body.state-overtime .signal,
     body.state-overtime .timer,
-    body.state-overtime .signal-name {
-      color: var(--true-maroon);
+    body.state-overtime .timing-info {
+      color: var(--white);
     }
 
-    /* Fullscreen */
+    /* =====================================================
+       FULLSCREEN PHONE MODE
+       ===================================================== */
 
     body.fullscreen {
       padding: 0;
-      background: black;
-    }
-
-    body.fullscreen .app {
-      width: 100%;
-      min-height: 100vh;
-      background: black;
+      overflow: hidden;
     }
 
     body.fullscreen .header,
@@ -377,46 +511,96 @@
     body.fullscreen .adjust,
     body.fullscreen .custom,
     body.fullscreen .footer,
-    body.fullscreen .timing-info {
+    body.fullscreen .timing-info,
+    body.fullscreen .lights {
       display: none;
     }
 
+    body.fullscreen .app,
     body.fullscreen .main {
       width: 100%;
+      max-width: none;
       min-height: 100vh;
+
       padding: 0;
-      background: black;
+
+      background: transparent;
     }
 
-    body.fullscreen .timer-area {
+    body.fullscreen .timer-card {
+      width: 100%;
       min-height: 100vh;
+
+      padding: 20px;
+
       border: 0;
+
+      background: transparent;
+
       display: flex;
       flex-direction: column;
       justify-content: center;
+      align-items: center;
     }
 
     body.fullscreen .speaker-name {
-      font-size: 36px;
-      color: white;
+      color: var(--white);
+
+      font-size: clamp(22px, 6vw, 42px);
     }
 
-    body.fullscreen .signal-name {
-      font-size: 36px;
+    body.fullscreen .signal {
+      color: var(--white);
+
+      font-size: clamp(22px, 7vw, 42px);
     }
 
     body.fullscreen .timer {
-      font-size: clamp(130px, 27vw, 360px);
-      margin: 25px 0;
+      color: var(--white);
+
+      font-size: clamp(120px, 31vw, 360px);
+
+      line-height: 0.85;
+
+      margin: 20px 0;
     }
 
-    body.fullscreen .lights {
-      margin-top: 30px;
+    /* In fullscreen, use the state color
+       on the entire viewport. */
+
+    body.fullscreen.state-green,
+    body.fullscreen.state-green .app,
+    body.fullscreen.state-green .main,
+    body.fullscreen.state-green .timer-card {
+      background: var(--signal-green);
     }
 
-    /* Mobile */
+    body.fullscreen.state-yellow,
+    body.fullscreen.state-yellow .app,
+    body.fullscreen.state-yellow .main,
+    body.fullscreen.state-yellow .timer-card {
+      background: var(--signal-yellow);
+    }
 
-    @media (max-width: 800px) {
+    body.fullscreen.state-red,
+    body.fullscreen.state-red .app,
+    body.fullscreen.state-red .main,
+    body.fullscreen.state-red .timer-card {
+      background: var(--signal-red);
+    }
+
+    body.fullscreen.state-overtime,
+    body.fullscreen.state-overtime .app,
+    body.fullscreen.state-overtime .main,
+    body.fullscreen.state-overtime .timer-card {
+      background: var(--true-maroon);
+    }
+
+    /* =====================================================
+       MOBILE
+       ===================================================== */
+
+    @media (max-width: 650px) {
 
       .presets {
         grid-template-columns: repeat(2, 1fr);
@@ -435,36 +619,15 @@
       }
     }
 
-    @media (max-width: 480px) {
+    @media (max-width: 400px) {
 
-      body {
-        padding: 0;
-      }
-
-      .main {
-        padding: 12px;
-      }
-
-      .header {
-        padding: 18px 14px;
-      }
-
-      .presets {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .timer-area {
-        border-width: 7px;
-        padding: 20px 10px 25px;
-      }
-
-      .speaker-name {
-        font-size: 20px;
+      .timer {
+        font-size: 76px;
       }
 
       .light {
-        width: 52px;
-        height: 52px;
+        width: 40px;
+        height: 40px;
       }
 
       .custom-grid {
@@ -480,490 +643,432 @@
 
 <body>
 
-  <div class="app">
+<div class="app">
 
-    <header class="header">
-      <h1>Toastmasters Meeting Timer</h1>
-      <p>Jaipur Speakers Toastmasters Club</p>
-    </header>
+  <header class="header">
+    <h1>Toastmasters Meeting Timer</h1>
+    <p>Jaipur Speakers Toastmasters Club</p>
+  </header>
 
-    <main class="main">
+  <main class="main">
 
-      <!-- Presets -->
+    <div class="presets">
 
-      <div class="presets">
+      <button
+        class="preset active"
+        data-green="60"
+        data-yellow="90"
+        data-red="120">
+        Table Topics
+        <span>1:00 · 1:30 · 2:00</span>
+      </button>
+
+      <button
+        class="preset"
+        data-green="240"
+        data-yellow="300"
+        data-red="360">
+        Icebreaker
+        <span>4:00 · 5:00 · 6:00</span>
+      </button>
+
+      <button
+        class="preset"
+        data-green="300"
+        data-yellow="360"
+        data-red="420">
+        Prepared Speech
+        <span>5:00 · 6:00 · 7:00</span>
+      </button>
+
+      <button
+        class="preset"
+        data-green="120"
+        data-yellow="150"
+        data-red="180">
+        Evaluation
+        <span>2:00 · 2:30 · 3:00</span>
+      </button>
+
+    </div>
+
+    <input
+      id="speaker"
+      class="speaker"
+      type="text"
+      placeholder="Speaker name (optional)"
+      autocomplete="off"
+    >
+
+    <section class="timer-card">
+
+      <div
+        id="speakerName"
+        class="speaker-name">
+      </div>
+
+      <div
+        id="signal"
+        class="signal">
+        READY
+      </div>
+
+      <div
+        id="timer"
+        class="timer">
+        00:00
+      </div>
+
+      <div
+        id="timingInfo"
+        class="timing-info">
+        Green at 1:00 · Yellow at 1:30 · Red at 2:00
+      </div>
+
+      <div class="lights">
+
+        <div
+          id="greenLight"
+          class="light green">
+        </div>
+
+        <div
+          id="yellowLight"
+          class="light yellow">
+        </div>
+
+        <div
+          id="redLight"
+          class="light red">
+        </div>
+
+      </div>
+
+    </section>
+
+    <div class="controls">
+
+      <button
+        id="start"
+        class="control">
+        Start
+      </button>
+
+      <button
+        id="reset"
+        class="control maroon">
+        Reset
+      </button>
+
+      <button
+        id="fullscreen"
+        class="control gray">
+        Fullscreen
+      </button>
+
+      <button
+        id="stop"
+        class="control gray">
+        Stop
+      </button>
+
+    </div>
+
+    <div class="adjust">
+
+      <button id="minus30">
+        −30 sec
+      </button>
+
+      <button id="plus30">
+        +30 sec
+      </button>
+
+    </div>
+
+    <section class="custom">
+
+      <h2>Custom Timing</h2>
+
+      <div class="custom-grid">
+
+        <div class="field">
+          <label for="customGreen">
+            Green at (min)
+          </label>
+
+          <input
+            id="customGreen"
+            type="number"
+            min="0"
+            step="0.5"
+            value="5">
+        </div>
+
+        <div class="field">
+          <label for="customYellow">
+            Yellow at (min)
+          </label>
+
+          <input
+            id="customYellow"
+            type="number"
+            min="0"
+            step="0.5"
+            value="6">
+        </div>
+
+        <div class="field">
+          <label for="customRed">
+            Red at (min)
+          </label>
+
+          <input
+            id="customRed"
+            type="number"
+            min="0"
+            step="0.5"
+            value="7">
+        </div>
 
         <button
-          class="preset active"
-          data-green="60"
-          data-yellow="90"
-          data-red="120"
-        >
-          Table Topics
-          <span>1:00 · 1:30 · 2:00</span>
-        </button>
-
-        <button
-          class="preset"
-          data-green="240"
-          data-yellow="300"
-          data-red="360"
-        >
-          Icebreaker
-          <span>4:00 · 5:00 · 6:00</span>
-        </button>
-
-        <button
-          class="preset"
-          data-green="300"
-          data-yellow="360"
-          data-red="420"
-        >
-          Prepared Speech
-          <span>5:00 · 6:00 · 7:00</span>
-        </button>
-
-        <button
-          class="preset"
-          data-green="120"
-          data-yellow="150"
-          data-red="180"
-        >
-          Evaluation
-          <span>2:00 · 2:30 · 3:00</span>
-        </button>
-
-        <button
-          class="preset"
-          data-green="180"
-          data-yellow="240"
-          data-red="300"
-        >
-          Tall Tales
-          <span>3:00 · 4:00 · 5:00</span>
+          id="applyCustom"
+          class="apply">
+          Apply
         </button>
 
       </div>
 
-      <!-- Speaker -->
+    </section>
 
-      <input
-        id="speaker"
-        class="speaker"
-        type="text"
-        placeholder="Speaker name (optional)"
-        autocomplete="off"
-      >
+  </main>
 
-      <!-- Timer -->
+  <footer class="footer">
+    Where Leaders Are Made.
+  </footer>
 
-      <section class="timer-area">
+</div>
 
-        <div id="speakerName" class="speaker-name"></div>
 
-        <div id="signalName" class="signal-name">
-          Ready
-        </div>
+<script>
 
-        <div id="timer" class="timer">
-          02:00
-        </div>
+  const presets =
+    document.querySelectorAll(".preset");
 
-        <div id="timingInfo" class="timing-info">
-          Green at 1:00 · Yellow at 1:30 · Red at 2:00
-        </div>
+  const timer =
+    document.getElementById("timer");
 
-        <div class="lights">
+  const signal =
+    document.getElementById("signal");
 
-          <div id="greenLight" class="light green"></div>
-          <div id="yellowLight" class="light yellow"></div>
-          <div id="redLight" class="light red"></div>
+  const timingInfo =
+    document.getElementById("timingInfo");
 
-        </div>
+  const speakerInput =
+    document.getElementById("speaker");
 
-      </section>
+  const speakerName =
+    document.getElementById("speakerName");
 
-      <!-- Controls -->
+  const startButton =
+    document.getElementById("start");
 
-      <div class="controls">
+  const resetButton =
+    document.getElementById("reset");
 
-        <button id="start" class="control">
-          Start
-        </button>
+  const stopButton =
+    document.getElementById("stop");
 
-        <button id="reset" class="control maroon">
-          Reset
-        </button>
+  const fullscreenButton =
+    document.getElementById("fullscreen");
 
-        <button id="fullscreen" class="control gray">
-          Fullscreen
-        </button>
+  const plus30Button =
+    document.getElementById("plus30");
 
-        <button id="stop" class="control gray">
-          Stop
-        </button>
+  const minus30Button =
+    document.getElementById("minus30");
 
-      </div>
+  const greenLight =
+    document.getElementById("greenLight");
 
-      <!-- Adjustments -->
+  const yellowLight =
+    document.getElementById("yellowLight");
 
-      <div class="adjust">
+  const redLight =
+    document.getElementById("redLight");
 
-        <button id="plus30">
-          +30 seconds
-        </button>
+  const customGreen =
+    document.getElementById("customGreen");
 
-        <button id="minus30">
-          −30 seconds
-        </button>
+  const customYellow =
+    document.getElementById("customYellow");
 
-      </div>
+  const customRed =
+    document.getElementById("customRed");
 
-      <!-- Custom -->
+  const applyCustom =
+    document.getElementById("applyCustom");
 
-      <section class="custom">
 
-        <h2>Custom Timer</h2>
+  let elapsedSeconds = 0;
 
-        <div class="custom-grid">
+  let greenAt = 60;
+  let yellowAt = 90;
+  let redAt = 120;
 
-          <div class="field">
-            <label for="customGreen">
-              Green at (minutes)
-            </label>
+  let running = false;
+  let interval = null;
 
-            <input
-              id="customGreen"
-              type="number"
-              min="0"
-              step="0.5"
-              value="5"
-            >
-          </div>
 
-          <div class="field">
-            <label for="customYellow">
-              Yellow at (minutes)
-            </label>
+  function formatTime(seconds) {
 
-            <input
-              id="customYellow"
-              type="number"
-              min="0"
-              step="0.5"
-              value="6"
-            >
-          </div>
+    const minutes =
+      Math.floor(seconds / 60);
 
-          <div class="field">
-            <label for="customRed">
-              Red at (minutes)
-            </label>
+    const secs =
+      seconds % 60;
 
-            <input
-              id="customRed"
-              type="number"
-              min="0"
-              step="0.5"
-              value="7"
-            >
-          </div>
+    return (
+      String(minutes).padStart(2, "0") +
+      ":" +
+      String(secs).padStart(2, "0")
+    );
+  }
 
-          <button id="applyCustom" class="apply">
-            Apply Custom Timing
-          </button>
 
-        </div>
+  function clearStates() {
 
-      </section>
+    document.body.classList.remove(
+      "state-green",
+      "state-yellow",
+      "state-red",
+      "state-overtime"
+    );
 
-    </main>
+    greenLight.classList.remove("active");
+    yellowLight.classList.remove("active");
+    redLight.classList.remove("active");
+  }
 
-    <footer class="footer">
-      Where Leaders Are Made.
-    </footer>
 
-  </div>
+  function updateDisplay() {
 
-  <script>
+    clearStates();
 
-    const presets =
-      document.querySelectorAll(".preset");
+    timer.textContent =
+      formatTime(elapsedSeconds);
 
-    const timer =
-      document.getElementById("timer");
 
-    const signalName =
-      document.getElementById("signalName");
+    if (elapsedSeconds < greenAt) {
 
-    const timingInfo =
-      document.getElementById("timingInfo");
+      signal.textContent =
+        "READY";
 
-    const speakerInput =
-      document.getElementById("speaker");
+      timingInfo.textContent =
+        "Green at " +
+        formatTime(greenAt);
 
-    const speakerName =
-      document.getElementById("speakerName");
-
-    const startButton =
-      document.getElementById("start");
-
-    const resetButton =
-      document.getElementById("reset");
-
-    const stopButton =
-      document.getElementById("stop");
-
-    const fullscreenButton =
-      document.getElementById("fullscreen");
-
-    const plus30Button =
-      document.getElementById("plus30");
-
-    const minus30Button =
-      document.getElementById("minus30");
-
-    const greenLight =
-      document.getElementById("greenLight");
-
-    const yellowLight =
-      document.getElementById("yellowLight");
-
-    const redLight =
-      document.getElementById("redLight");
-
-    const customGreen =
-      document.getElementById("customGreen");
-
-    const customYellow =
-      document.getElementById("customYellow");
-
-    const customRed =
-      document.getElementById("customRed");
-
-    const applyCustom =
-      document.getElementById("applyCustom");
-
-    let interval = null;
-    let running = false;
-
-    let elapsedSeconds = 0;
-
-    let greenAt = 60;
-    let yellowAt = 90;
-    let redAt = 120;
-
-
-    function formatTime(seconds) {
-
-      const absolute =
-        Math.abs(seconds);
-
-      const minutes =
-        Math.floor(absolute / 60);
-
-      const remaining =
-        absolute % 60;
-
-      return (
-        String(minutes).padStart(2, "0") +
-        ":" +
-        String(remaining).padStart(2, "0")
-      );
     }
 
+    else if (elapsedSeconds < yellowAt) {
 
-    function resetVisualState() {
-
-      document.body.classList.remove(
-        "state-green",
-        "state-yellow",
-        "state-red",
-        "state-overtime"
+      document.body.classList.add(
+        "state-green"
       );
 
-      greenLight.classList.remove("active");
-      yellowLight.classList.remove("active");
-      redLight.classList.remove("active");
+      greenLight.classList.add(
+        "active"
+      );
 
-      timer.classList.remove("overtime");
+      signal.textContent =
+        "GREEN";
+
+      timingInfo.textContent =
+        "Yellow at " +
+        formatTime(yellowAt) +
+        " · Red at " +
+        formatTime(redAt);
+
     }
 
+    else if (elapsedSeconds < redAt) {
 
-    function updateDisplay() {
+      document.body.classList.add(
+        "state-yellow"
+      );
 
-      resetVisualState();
+      yellowLight.classList.add(
+        "active"
+      );
 
-      const remaining =
-        redAt - elapsedSeconds;
+      signal.textContent =
+        "YELLOW";
 
+      timingInfo.textContent =
+        "Red at " +
+        formatTime(redAt);
 
-      /* Before green */
+    }
 
-      if (elapsedSeconds < greenAt) {
+    else {
 
-        signalName.textContent =
-          "Ready";
+      document.body.classList.add(
+        "state-red"
+      );
 
-        timer.textContent =
-          formatTime(remaining);
+      redLight.classList.add(
+        "active"
+      );
 
-        timingInfo.textContent =
-          "Green at " +
-          formatTime(greenAt);
+      signal.textContent =
+        "RED";
 
-      }
-
-
-      /* Green */
-
-      else if (elapsedSeconds < yellowAt) {
-
-        document.body.classList.add(
-          "state-green"
-        );
-
-        greenLight.classList.add("active");
-
-        signalName.textContent =
-          "Green";
-
-        timer.textContent =
-          formatTime(remaining);
-
-        timingInfo.textContent =
-          "Yellow at " +
-          formatTime(yellowAt) +
-          " · Red at " +
-          formatTime(redAt);
-
-      }
+      timingInfo.textContent =
+        "Time limit reached";
 
 
-      /* Yellow */
+      if (elapsedSeconds > redAt) {
 
-      else if (elapsedSeconds < redAt) {
-
-        document.body.classList.add(
-          "state-yellow"
-        );
-
-        yellowLight.classList.add("active");
-
-        signalName.textContent =
-          "Yellow";
-
-        timer.textContent =
-          formatTime(remaining);
-
-        timingInfo.textContent =
-          "Red at " +
-          formatTime(redAt);
-
-      }
-
-
-      /* Red */
-
-      else {
-
-        document.body.classList.add(
+        document.body.classList.remove(
           "state-red"
         );
 
-        redLight.classList.add("active");
+        document.body.classList.add(
+          "state-overtime"
+        );
 
-        signalName.textContent =
-          "Red";
-
-        timer.textContent =
-          "00:00";
+        signal.textContent =
+          "OVERTIME";
 
         timingInfo.textContent =
-          "Time limit reached";
-
-        if (elapsedSeconds > redAt) {
-
-          document.body.classList.remove(
-            "state-red"
+          "Over by " +
+          formatTime(
+            elapsedSeconds - redAt
           );
 
-          document.body.classList.add(
-            "state-overtime"
-          );
-
-          timer.classList.add(
-            "overtime"
-          );
-
-          signalName.textContent =
-            "Overtime";
-
-          timer.textContent =
-            "+" +
-            formatTime(
-              elapsedSeconds - redAt
-            );
-
-          timingInfo.textContent =
-            "Over the red time";
-        }
       }
 
-
-      /* Speaker */
-
-      const speaker =
-        speakerInput.value.trim();
-
-      speakerName.textContent =
-        speaker;
-
-      document.title =
-        speaker
-          ? speaker + " | Toastmasters Timer"
-          : "Toastmasters Meeting Timer";
     }
 
 
-    function tick() {
+    speakerName.textContent =
+      speakerInput.value.trim();
 
-      elapsedSeconds++;
-
-      updateDisplay();
-    }
+  }
 
 
-    function startTimer() {
+  function tick() {
 
-      if (running) {
+    elapsedSeconds++;
 
-        running = false;
+    updateDisplay();
 
-        clearInterval(interval);
-
-        interval = null;
-
-        startButton.textContent =
-          "Resume";
-
-        return;
-      }
-
-      running = true;
-
-      startButton.textContent =
-        "Pause";
-
-      interval =
-        setInterval(
-          tick,
-          1000
-        );
-    }
+  }
 
 
-    function stopTimer() {
+  function toggleTimer() {
+
+    if (running) {
 
       running = false;
 
@@ -972,276 +1077,314 @@
       interval = null;
 
       startButton.textContent =
-        "Start";
+        "Resume";
+
+      return;
+
     }
 
 
-    function resetTimer() {
+    running = true;
 
-      stopTimer();
+    startButton.textContent =
+      "Pause";
 
-      elapsedSeconds = 0;
+    interval =
+      setInterval(
+        tick,
+        1000
+      );
 
-      updateDisplay();
-    }
+  }
 
 
-    function applyTiming(
-      green,
-      yellow,
-      red
+  function stopTimer() {
+
+    running = false;
+
+    clearInterval(interval);
+
+    interval = null;
+
+    startButton.textContent =
+      "Start";
+
+  }
+
+
+  function resetTimer() {
+
+    stopTimer();
+
+    elapsedSeconds = 0;
+
+    updateDisplay();
+
+  }
+
+
+  function applyTiming(
+    green,
+    yellow,
+    red
+  ) {
+
+    if (
+      green < 0 ||
+      yellow <= green ||
+      red <= yellow
     ) {
 
-      if (
-        green < 0 ||
-        yellow <= green ||
-        red <= yellow
-      ) {
+      alert(
+        "Please make sure Green < Yellow < Red."
+      );
 
-        alert(
-          "Please make sure Green < Yellow < Red."
+      return;
+
+    }
+
+    greenAt = green;
+    yellowAt = yellow;
+    redAt = red;
+
+    resetTimer();
+
+  }
+
+
+  presets.forEach(
+    (preset) => {
+
+      preset.addEventListener(
+        "click",
+        () => {
+
+          presets.forEach(
+            (button) =>
+              button.classList.remove(
+                "active"
+              )
+          );
+
+          preset.classList.add(
+            "active"
+          );
+
+          applyTiming(
+            Number(
+              preset.dataset.green
+            ),
+            Number(
+              preset.dataset.yellow
+            ),
+            Number(
+              preset.dataset.red
+            )
+          );
+
+        }
+      );
+
+    }
+  );
+
+
+  startButton.addEventListener(
+    "click",
+    toggleTimer
+  );
+
+
+  resetButton.addEventListener(
+    "click",
+    resetTimer
+  );
+
+
+  stopButton.addEventListener(
+    "click",
+    stopTimer
+  );
+
+
+  plus30Button.addEventListener(
+    "click",
+    () => {
+
+      elapsedSeconds += 30;
+
+      updateDisplay();
+
+    }
+  );
+
+
+  minus30Button.addEventListener(
+    "click",
+    () => {
+
+      elapsedSeconds =
+        Math.max(
+          0,
+          elapsedSeconds - 30
         );
 
+      updateDisplay();
+
+    }
+  );
+
+
+  fullscreenButton.addEventListener(
+    "click",
+    async () => {
+
+      try {
+
+        if (
+          !document.fullscreenElement
+        ) {
+
+          await document.documentElement
+            .requestFullscreen();
+
+        }
+
+        else {
+
+          await document.exitFullscreen();
+
+        }
+
+      }
+
+      catch (error) {
+
+        console.log(
+          "Fullscreen unavailable:",
+          error
+        );
+
+      }
+
+    }
+  );
+
+
+  document.addEventListener(
+    "fullscreenchange",
+    () => {
+
+      const active =
+        Boolean(
+          document.fullscreenElement
+        );
+
+      document.body.classList.toggle(
+        "fullscreen",
+        active
+      );
+
+      fullscreenButton.textContent =
+        active
+          ? "Exit Fullscreen"
+          : "Fullscreen";
+
+    }
+  );
+
+
+  speakerInput.addEventListener(
+    "input",
+    updateDisplay
+  );
+
+
+  applyCustom.addEventListener(
+    "click",
+    () => {
+
+      const green =
+        Number(
+          customGreen.value
+        ) * 60;
+
+      const yellow =
+        Number(
+          customYellow.value
+        ) * 60;
+
+      const red =
+        Number(
+          customRed.value
+        ) * 60;
+
+
+      presets.forEach(
+        (button) =>
+          button.classList.remove(
+            "active"
+          )
+      );
+
+
+      applyTiming(
+        green,
+        yellow,
+        red
+      );
+
+    }
+  );
+
+
+  document.addEventListener(
+    "keydown",
+    (event) => {
+
+      if (
+        event.target.tagName === "INPUT"
+      ) {
         return;
       }
 
-      greenAt = green;
-      yellowAt = yellow;
-      redAt = red;
+      if (
+        event.code === "Space"
+      ) {
 
-      resetTimer();
+        event.preventDefault();
+
+        toggleTimer();
+
+      }
+
+      if (
+        event.code === "KeyR"
+      ) {
+
+        resetTimer();
+
+      }
+
+      if (
+        event.code === "KeyF"
+      ) {
+
+        fullscreenButton.click();
+
+      }
+
     }
+  );
 
 
-    /* Presets */
+  applyTiming(
+    60,
+    90,
+    120
+  );
 
-    presets.forEach(
-      (preset) => {
-
-        preset.addEventListener(
-          "click",
-          () => {
-
-            presets.forEach(
-              (button) =>
-                button.classList.remove(
-                  "active"
-                )
-            );
-
-            preset.classList.add(
-              "active"
-            );
-
-            applyTiming(
-              Number(
-                preset.dataset.green
-              ),
-              Number(
-                preset.dataset.yellow
-              ),
-              Number(
-                preset.dataset.red
-              )
-            );
-
-          }
-        );
-
-      }
-    );
-
-
-    /* Buttons */
-
-    startButton.addEventListener(
-      "click",
-      startTimer
-    );
-
-    stopButton.addEventListener(
-      "click",
-      stopTimer
-    );
-
-    resetButton.addEventListener(
-      "click",
-      resetTimer
-    );
-
-
-    plus30Button.addEventListener(
-      "click",
-      () => {
-
-        elapsedSeconds =
-          Math.max(
-            0,
-            elapsedSeconds - 30
-          );
-
-        updateDisplay();
-
-      }
-    );
-
-
-    minus30Button.addEventListener(
-      "click",
-      () => {
-
-        elapsedSeconds += 30;
-
-        updateDisplay();
-
-      }
-    );
-
-
-    /* Fullscreen */
-
-    fullscreenButton.addEventListener(
-      "click",
-      async () => {
-
-        try {
-
-          if (
-            !document.fullscreenElement
-          ) {
-
-            await document.documentElement
-              .requestFullscreen();
-
-          } else {
-
-            await document.exitFullscreen();
-
-          }
-
-        } catch (error) {
-
-          console.log(
-            "Fullscreen unavailable:",
-            error
-          );
-        }
-
-      }
-    );
-
-
-    document.addEventListener(
-      "fullscreenchange",
-      () => {
-
-        const active =
-          Boolean(
-            document.fullscreenElement
-          );
-
-        document.body.classList.toggle(
-          "fullscreen",
-          active
-        );
-
-        fullscreenButton.textContent =
-          active
-            ? "Exit Fullscreen"
-            : "Fullscreen";
-
-      }
-    );
-
-
-    /* Speaker name */
-
-    speakerInput.addEventListener(
-      "input",
-      updateDisplay
-    );
-
-
-    /* Custom timing */
-
-    applyCustom.addEventListener(
-      "click",
-      () => {
-
-        const green =
-          Number(
-            customGreen.value
-          ) * 60;
-
-        const yellow =
-          Number(
-            customYellow.value
-          ) * 60;
-
-        const red =
-          Number(
-            customRed.value
-          ) * 60;
-
-        presets.forEach(
-          (button) =>
-            button.classList.remove(
-              "active"
-            )
-        );
-
-        applyTiming(
-          green,
-          yellow,
-          red
-        );
-
-      }
-    );
-
-
-    /* Keyboard shortcuts */
-
-    document.addEventListener(
-      "keydown",
-      (event) => {
-
-        if (
-          event.target.tagName === "INPUT"
-        ) {
-          return;
-        }
-
-        switch (event.code) {
-
-          case "Space":
-            event.preventDefault();
-            startTimer();
-            break;
-
-          case "KeyR":
-            resetTimer();
-            break;
-
-          case "KeyF":
-            fullscreenButton.click();
-            break;
-
-        }
-
-      }
-    );
-
-
-    /* Initial state */
-
-    applyTiming(
-      60,
-      90,
-      120
-    );
-
-  </script>
+</script>
 
 </body>
 </html>
