@@ -3,284 +3,421 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#004165">
 
-  <title>Toastmasters Meeting Timer</title>
-
-  <meta
-    name="description"
-    content="Toastmasters meeting timer for Table Topics, speeches, evaluations and custom timing."
-  >
+  <title>Toastmasters Timer | Jaipur Speakers</title>
 
   <style>
     :root {
       --loyal-blue: #004165;
       --true-maroon: #772432;
       --cool-gray: #A9B2B1;
-      --dark-gray: #333333;
-      --light-gray: #F4F5F5;
       --white: #FFFFFF;
-      --warning: #E6A817;
-      --danger: #C62828;
-      --success: #4F7D44;
+      --black: #222222;
+
+      --green: #3F7D20;
+      --yellow: #D99A00;
+      --red: #C62828;
     }
 
     * {
       box-sizing: border-box;
     }
 
+    html,
     body {
       margin: 0;
-      min-height: 100vh;
+      min-height: 100%;
+    }
+
+    body {
       font-family: "Source Sans 3", "Source Sans Pro", Arial, sans-serif;
-      background: var(--light-gray);
-      color: var(--dark-gray);
-      display: flex;
-      justify-content: center;
-      padding: 24px;
+      background: #F4F5F5;
+      color: var(--black);
+      padding: 20px;
     }
 
-    .timer-app {
-      width: min(900px, 100%);
+    .app {
+      width: min(1100px, 100%);
+      margin: auto;
+      background: var(--white);
     }
 
-    .brand-bar {
+    /* Header */
+
+    .header {
       background: var(--loyal-blue);
-      color: var(--white);
-      padding: 20px 24px;
+      color: white;
+      padding: 22px 24px;
       text-align: center;
     }
 
-    .brand-bar h1 {
+    .header h1 {
       margin: 0;
-      font-size: clamp(24px, 5vw, 38px);
+      font-size: clamp(25px, 4vw, 40px);
+      line-height: 1.05;
       font-weight: 700;
-      letter-spacing: 0.02em;
     }
 
-    .brand-bar p {
-      margin: 5px 0 0;
-      font-size: 16px;
-      opacity: 0.95;
+    .header p {
+      margin: 7px 0 0;
+      font-size: 17px;
     }
 
-    .content {
-      background: var(--white);
+    /* Main */
+
+    .main {
       padding: 24px;
     }
 
+    /* Presets */
+
     .presets {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(5, 1fr);
       gap: 10px;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
 
     .preset {
       border: 2px solid var(--loyal-blue);
-      background: var(--white);
+      background: white;
       color: var(--loyal-blue);
-      padding: 14px 10px;
+      padding: 13px 8px;
       cursor: pointer;
       font: inherit;
       font-weight: 700;
-      min-height: 70px;
-      transition: 0.15s ease;
+      min-height: 72px;
     }
 
     .preset:hover {
       background: #eef3f5;
     }
 
-    .preset.active {
-      background: var(--loyal-blue);
-      color: var(--white);
-    }
-
     .preset span {
       display: block;
       margin-top: 4px;
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 400;
     }
 
-    .speaker-row {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 12px;
-      margin-bottom: 20px;
+    .preset.active {
+      background: var(--loyal-blue);
+      color: white;
     }
 
-    .speaker-input {
-      border: 2px solid var(--cool-gray);
+    /* Speaker */
+
+    .speaker {
+      width: 100%;
       padding: 14px;
+      border: 2px solid var(--cool-gray);
       font: inherit;
       font-size: 18px;
+      margin-bottom: 18px;
       outline: none;
     }
 
-    .speaker-input:focus {
+    .speaker:focus {
       border-color: var(--loyal-blue);
     }
 
-    .timer-card {
-      border: 8px solid var(--loyal-blue);
-      padding: 30px 20px;
+    /* Timer */
+
+    .timer-area {
+      border: 10px solid var(--loyal-blue);
+      padding: 25px 20px 30px;
       text-align: center;
-      margin-bottom: 20px;
       transition: border-color 0.2s ease;
     }
 
-    .status-label {
-      font-size: 20px;
+    .speaker-name {
+      font-size: 24px;
       font-weight: 700;
       color: var(--loyal-blue);
-      margin-bottom: 10px;
-      min-height: 30px;
+      min-height: 32px;
     }
 
-    .time {
-      font-family: "Source Sans 3", "Source Sans Pro", Arial, sans-serif;
-      font-size: clamp(88px, 18vw, 170px);
-      line-height: 0.95;
-      font-weight: 700;
-      letter-spacing: 0.02em;
+    .signal-name {
+      margin-top: 5px;
+      text-transform: uppercase;
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      min-height: 30px;
+      color: var(--loyal-blue);
+    }
+
+    .timer {
+      font-size: clamp(90px, 18vw, 180px);
+      line-height: 0.90;
+      font-weight: 800;
       font-variant-numeric: tabular-nums;
       color: var(--loyal-blue);
+      margin: 20px 0;
+      letter-spacing: 0.02em;
     }
 
-    .substatus {
-      margin-top: 14px;
-      font-size: 18px;
+    .timer.overtime {
+      color: var(--true-maroon);
+    }
+
+    .timing-info {
+      font-size: 17px;
       color: #555;
       min-height: 28px;
     }
+
+    /* Lights */
+
+    .lights {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 22px;
+    }
+
+    .light {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      opacity: 0.18;
+      border: 4px solid currentColor;
+    }
+
+    .light.green {
+      color: var(--green);
+    }
+
+    .light.yellow {
+      color: var(--yellow);
+    }
+
+    .light.red {
+      color: var(--red);
+    }
+
+    .light.active {
+      opacity: 1;
+    }
+
+    .light.green.active {
+      background: var(--green);
+    }
+
+    .light.yellow.active {
+      background: var(--yellow);
+    }
+
+    .light.red.active {
+      background: var(--red);
+    }
+
+    /* Controls */
 
     .controls {
       display: grid;
       grid-template-columns: 2fr 1fr 1fr 1fr;
       gap: 10px;
-      margin-bottom: 20px;
+      margin-top: 18px;
     }
 
-    .control {
-      border: none;
+    button.control {
+      border: 0;
       padding: 15px 12px;
-      font: inherit;
-      font-size: 18px;
-      font-weight: 700;
       cursor: pointer;
+      font: inherit;
+      font-size: 17px;
+      font-weight: 700;
       background: var(--loyal-blue);
-      color: var(--white);
+      color: white;
     }
 
-    .control:hover {
+    button.control:hover,
+    .apply:hover {
       opacity: 0.92;
     }
 
-    .control.secondary {
+    button.maroon {
       background: var(--true-maroon);
     }
 
-    .control.light {
+    button.gray {
       background: var(--cool-gray);
-      color: var(--dark-gray);
+      color: var(--black);
     }
 
-    .adjustments {
+    /* Fine controls */
+
+    .adjust {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 10px;
-      margin-bottom: 20px;
+      margin-top: 10px;
     }
 
-    .adjust {
-      border: 2px solid var(--cool-gray);
-      background: var(--white);
-      color: var(--dark-gray);
+    .adjust button {
       padding: 12px;
-      cursor: pointer;
+      border: 2px solid var(--cool-gray);
+      background: white;
       font: inherit;
       font-weight: 700;
+      cursor: pointer;
     }
 
+    /* Custom timer */
+
     .custom {
+      margin-top: 24px;
+      padding-top: 22px;
       border-top: 1px solid #ddd;
-      padding-top: 20px;
     }
 
     .custom h2 {
-      margin: 0 0 12px;
       color: var(--loyal-blue);
-      font-size: 22px;
+      margin: 0 0 12px;
     }
 
     .custom-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr auto;
+      grid-template-columns: 1fr 1fr 1fr auto;
       gap: 10px;
       align-items: end;
     }
 
     .field label {
       display: block;
-      margin-bottom: 6px;
+      margin-bottom: 5px;
       font-weight: 700;
     }
 
     .field input {
       width: 100%;
-      border: 2px solid var(--cool-gray);
       padding: 12px;
       font: inherit;
-      font-size: 18px;
+      font-size: 17px;
+      border: 2px solid var(--cool-gray);
     }
 
-    .apply-custom {
-      border: none;
-      background: var(--true-maroon);
-      color: var(--white);
+    .apply {
       padding: 13px 18px;
+      border: 0;
+      background: var(--true-maroon);
+      color: white;
       font: inherit;
       font-weight: 700;
       cursor: pointer;
     }
 
+    /* Footer */
+
     .footer {
-      text-align: center;
-      padding: 16px;
       background: var(--loyal-blue);
-      color: var(--white);
+      color: white;
+      text-align: center;
+      padding: 14px;
       font-size: 14px;
     }
 
-    body.warning .timer-card {
-      border-color: var(--warning);
+    /* Signal states */
+
+    body.state-green .timer-area {
+      border-color: var(--green);
     }
 
-    body.warning .time,
-    body.warning .status-label {
-      color: var(--warning);
+    body.state-green .timer,
+    body.state-green .signal-name {
+      color: var(--green);
     }
 
-    body.danger .timer-card {
-      border-color: var(--danger);
+    body.state-yellow .timer-area {
+      border-color: var(--yellow);
     }
 
-    body.danger .time,
-    body.danger .status-label {
-      color: var(--danger);
+    body.state-yellow .timer,
+    body.state-yellow .signal-name {
+      color: var(--yellow);
     }
 
-    body.finished .timer-card {
+    body.state-red .timer-area {
+      border-color: var(--red);
+    }
+
+    body.state-red .timer,
+    body.state-red .signal-name {
+      color: var(--red);
+    }
+
+    body.state-overtime .timer-area {
       border-color: var(--true-maroon);
     }
 
-    body.finished .time,
-    body.finished .status-label {
+    body.state-overtime .timer,
+    body.state-overtime .signal-name {
       color: var(--true-maroon);
     }
 
-    @media (max-width: 700px) {
+    /* Fullscreen */
+
+    body.fullscreen {
+      padding: 0;
+      background: black;
+    }
+
+    body.fullscreen .app {
+      width: 100%;
+      min-height: 100vh;
+      background: black;
+    }
+
+    body.fullscreen .header,
+    body.fullscreen .presets,
+    body.fullscreen .speaker,
+    body.fullscreen .controls,
+    body.fullscreen .adjust,
+    body.fullscreen .custom,
+    body.fullscreen .footer,
+    body.fullscreen .timing-info {
+      display: none;
+    }
+
+    body.fullscreen .main {
+      width: 100%;
+      min-height: 100vh;
+      padding: 0;
+      background: black;
+    }
+
+    body.fullscreen .timer-area {
+      min-height: 100vh;
+      border: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    body.fullscreen .speaker-name {
+      font-size: 36px;
+      color: white;
+    }
+
+    body.fullscreen .signal-name {
+      font-size: 36px;
+    }
+
+    body.fullscreen .timer {
+      font-size: clamp(130px, 27vw, 360px);
+      margin: 25px 0;
+    }
+
+    body.fullscreen .lights {
+      margin-top: 30px;
+    }
+
+    /* Mobile */
+
+    @media (max-width: 800px) {
+
       .presets {
         grid-template-columns: repeat(2, 1fr);
       }
@@ -289,45 +426,52 @@
         grid-template-columns: 1fr 1fr;
       }
 
-      .speaker-row {
-        grid-template-columns: 1fr;
-      }
-
       .custom-grid {
         grid-template-columns: 1fr 1fr;
       }
 
-      .apply-custom {
+      .apply {
         grid-column: 1 / -1;
-      }
-
-      .content {
-        padding: 16px;
       }
     }
 
-    @media (max-width: 430px) {
+    @media (max-width: 480px) {
+
       body {
         padding: 0;
       }
 
-      .content {
+      .main {
         padding: 12px;
       }
 
-      .brand-bar {
-        padding: 16px;
+      .header {
+        padding: 18px 14px;
       }
 
-      .time {
-        font-size: 78px;
+      .presets {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .timer-area {
+        border-width: 7px;
+        padding: 20px 10px 25px;
+      }
+
+      .speaker-name {
+        font-size: 20px;
+      }
+
+      .light {
+        width: 52px;
+        height: 52px;
       }
 
       .custom-grid {
         grid-template-columns: 1fr;
       }
 
-      .apply-custom {
+      .apply {
         grid-column: auto;
       }
     }
@@ -336,96 +480,146 @@
 
 <body>
 
-  <main class="timer-app">
+  <div class="app">
 
-    <header class="brand-bar">
+    <header class="header">
       <h1>Toastmasters Meeting Timer</h1>
       <p>Jaipur Speakers Toastmasters Club</p>
     </header>
 
-    <section class="content">
+    <main class="main">
+
+      <!-- Presets -->
 
       <div class="presets">
 
-        <button class="preset active" data-min="1" data-max="2">
-          Table Topics
-          <span>1–2 min</span>
-        </button>
-
-        <button class="preset" data-min="4" data-max="6">
-          Icebreaker
-          <span>4–6 min</span>
-        </button>
-
-        <button class="preset" data-min="5" data-max="7">
-          Prepared Speech
-          <span>5–7 min</span>
-        </button>
-
-        <button class="preset" data-min="2" data-max="3">
-          Evaluation
-          <span>2–3 min</span>
-        </button>
-
-      </div>
-
-      <div class="speaker-row">
-        <input
-          id="speaker"
-          class="speaker-input"
-          type="text"
-          placeholder="Speaker name (optional)"
-          aria-label="Speaker name"
+        <button
+          class="preset active"
+          data-green="60"
+          data-yellow="90"
+          data-red="120"
         >
+          Table Topics
+          <span>1:00 · 1:30 · 2:00</span>
+        </button>
+
+        <button
+          class="preset"
+          data-green="240"
+          data-yellow="300"
+          data-red="360"
+        >
+          Icebreaker
+          <span>4:00 · 5:00 · 6:00</span>
+        </button>
+
+        <button
+          class="preset"
+          data-green="300"
+          data-yellow="360"
+          data-red="420"
+        >
+          Prepared Speech
+          <span>5:00 · 6:00 · 7:00</span>
+        </button>
+
+        <button
+          class="preset"
+          data-green="120"
+          data-yellow="150"
+          data-red="180"
+        >
+          Evaluation
+          <span>2:00 · 2:30 · 3:00</span>
+        </button>
+
+        <button
+          class="preset"
+          data-green="180"
+          data-yellow="240"
+          data-red="300"
+        >
+          Tall Tales
+          <span>3:00 · 4:00 · 5:00</span>
+        </button>
+
       </div>
 
-      <div class="timer-card">
+      <!-- Speaker -->
 
-        <div id="status" class="status-label">
+      <input
+        id="speaker"
+        class="speaker"
+        type="text"
+        placeholder="Speaker name (optional)"
+        autocomplete="off"
+      >
+
+      <!-- Timer -->
+
+      <section class="timer-area">
+
+        <div id="speakerName" class="speaker-name"></div>
+
+        <div id="signalName" class="signal-name">
           Ready
         </div>
 
-        <div id="time" class="time">
-          01:00
+        <div id="timer" class="timer">
+          02:00
         </div>
 
-        <div id="substatus" class="substatus">
-          Green begins at 1:00
+        <div id="timingInfo" class="timing-info">
+          Green at 1:00 · Yellow at 1:30 · Red at 2:00
         </div>
 
-      </div>
+        <div class="lights">
+
+          <div id="greenLight" class="light green"></div>
+          <div id="yellowLight" class="light yellow"></div>
+          <div id="redLight" class="light red"></div>
+
+        </div>
+
+      </section>
+
+      <!-- Controls -->
 
       <div class="controls">
 
-        <button id="startPause" class="control">
+        <button id="start" class="control">
           Start
         </button>
 
-        <button id="reset" class="control secondary">
+        <button id="reset" class="control maroon">
           Reset
         </button>
 
-        <button id="fullscreen" class="control light">
+        <button id="fullscreen" class="control gray">
           Fullscreen
         </button>
 
-        <button id="clearSpeaker" class="control light">
-          Clear Name
+        <button id="stop" class="control gray">
+          Stop
         </button>
 
       </div>
 
-      <div class="adjustments">
+      <!-- Adjustments -->
 
-        <button id="plus30" class="adjust">
+      <div class="adjust">
+
+        <button id="plus30">
           +30 seconds
         </button>
 
-        <button id="minus30" class="adjust">
+        <button id="minus30">
           −30 seconds
         </button>
 
       </div>
+
+      <!-- Custom -->
 
       <section class="custom">
 
@@ -434,299 +628,619 @@
         <div class="custom-grid">
 
           <div class="field">
-            <label for="customMin">Minutes</label>
-            <input id="customMin" type="number" min="0" max="180" value="5">
+            <label for="customGreen">
+              Green at (minutes)
+            </label>
+
+            <input
+              id="customGreen"
+              type="number"
+              min="0"
+              step="0.5"
+              value="5"
+            >
           </div>
 
           <div class="field">
-            <label for="customSec">Seconds</label>
-            <input id="customSec" type="number" min="0" max="59" value="0">
+            <label for="customYellow">
+              Yellow at (minutes)
+            </label>
+
+            <input
+              id="customYellow"
+              type="number"
+              min="0"
+              step="0.5"
+              value="6"
+            >
           </div>
 
-          <button id="applyCustom" class="apply-custom">
-            Use Custom Time
+          <div class="field">
+            <label for="customRed">
+              Red at (minutes)
+            </label>
+
+            <input
+              id="customRed"
+              type="number"
+              min="0"
+              step="0.5"
+              value="7"
+            >
+          </div>
+
+          <button id="applyCustom" class="apply">
+            Apply Custom Timing
           </button>
 
         </div>
 
       </section>
 
-    </section>
+    </main>
 
     <footer class="footer">
       Where Leaders Are Made.
     </footer>
 
-  </main>
+  </div>
 
   <script>
-    const presets = document.querySelectorAll(".preset");
-    const timeDisplay = document.getElementById("time");
-    const statusDisplay = document.getElementById("status");
-    const substatusDisplay = document.getElementById("substatus");
 
-    const startPauseButton = document.getElementById("startPause");
-    const resetButton = document.getElementById("reset");
-    const fullscreenButton = document.getElementById("fullscreen");
+    const presets =
+      document.querySelectorAll(".preset");
 
-    const plus30Button = document.getElementById("plus30");
-    const minus30Button = document.getElementById("minus30");
+    const timer =
+      document.getElementById("timer");
 
-    const speakerInput = document.getElementById("speaker");
-    const clearSpeakerButton = document.getElementById("clearSpeaker");
+    const signalName =
+      document.getElementById("signalName");
 
-    const customMin = document.getElementById("customMin");
-    const customSec = document.getElementById("customSec");
-    const applyCustomButton = document.getElementById("applyCustom");
+    const timingInfo =
+      document.getElementById("timingInfo");
+
+    const speakerInput =
+      document.getElementById("speaker");
+
+    const speakerName =
+      document.getElementById("speakerName");
+
+    const startButton =
+      document.getElementById("start");
+
+    const resetButton =
+      document.getElementById("reset");
+
+    const stopButton =
+      document.getElementById("stop");
+
+    const fullscreenButton =
+      document.getElementById("fullscreen");
+
+    const plus30Button =
+      document.getElementById("plus30");
+
+    const minus30Button =
+      document.getElementById("minus30");
+
+    const greenLight =
+      document.getElementById("greenLight");
+
+    const yellowLight =
+      document.getElementById("yellowLight");
+
+    const redLight =
+      document.getElementById("redLight");
+
+    const customGreen =
+      document.getElementById("customGreen");
+
+    const customYellow =
+      document.getElementById("customYellow");
+
+    const customRed =
+      document.getElementById("customRed");
+
+    const applyCustom =
+      document.getElementById("applyCustom");
 
     let interval = null;
-    let totalSeconds = 60;
-    let remainingSeconds = 60;
-    let minSeconds = 60;
-    let maxSeconds = 120;
     let running = false;
 
+    let elapsedSeconds = 0;
+
+    let greenAt = 60;
+    let yellowAt = 90;
+    let redAt = 120;
+
+
     function formatTime(seconds) {
-      const negative = seconds < 0;
-      const absolute = Math.abs(seconds);
 
-      const mins = Math.floor(absolute / 60);
-      const secs = absolute % 60;
+      const absolute =
+        Math.abs(seconds);
 
-      const formatted =
-        String(mins).padStart(2, "0") +
+      const minutes =
+        Math.floor(absolute / 60);
+
+      const remaining =
+        absolute % 60;
+
+      return (
+        String(minutes).padStart(2, "0") +
         ":" +
-        String(secs).padStart(2, "0");
-
-      return negative ? "-" + formatted : formatted;
+        String(remaining).padStart(2, "0")
+      );
     }
 
-    function updateDisplay() {
-      timeDisplay.textContent = formatTime(remainingSeconds);
 
-      const elapsed = totalSeconds - remainingSeconds;
+    function resetVisualState() {
 
       document.body.classList.remove(
-        "warning",
-        "danger",
-        "finished"
+        "state-green",
+        "state-yellow",
+        "state-red",
+        "state-overtime"
       );
 
-      if (remainingSeconds <= 0) {
+      greenLight.classList.remove("active");
+      yellowLight.classList.remove("active");
+      redLight.classList.remove("active");
 
-        statusDisplay.textContent = "Time's up";
-        substatusDisplay.textContent = "Maximum time reached";
-
-        document.body.classList.add("finished");
-
-      } else if (elapsed >= maxSeconds) {
-
-        statusDisplay.textContent = "Over time";
-        substatusDisplay.textContent = "Please conclude your speech";
-
-        document.body.classList.add("danger");
-
-      } else if (elapsed >= minSeconds) {
-
-        statusDisplay.textContent = "Yellow";
-        substatusDisplay.textContent =
-          "Warning period • Maximum " +
-          formatTime(maxSeconds);
-
-        document.body.classList.add("warning");
-
-      } else {
-
-        statusDisplay.textContent = "Green";
-        substatusDisplay.textContent =
-          "Green • Minimum " +
-          formatTime(minSeconds);
-      }
+      timer.classList.remove("overtime");
     }
+
+
+    function updateDisplay() {
+
+      resetVisualState();
+
+      const remaining =
+        redAt - elapsedSeconds;
+
+
+      /* Before green */
+
+      if (elapsedSeconds < greenAt) {
+
+        signalName.textContent =
+          "Ready";
+
+        timer.textContent =
+          formatTime(remaining);
+
+        timingInfo.textContent =
+          "Green at " +
+          formatTime(greenAt);
+
+      }
+
+
+      /* Green */
+
+      else if (elapsedSeconds < yellowAt) {
+
+        document.body.classList.add(
+          "state-green"
+        );
+
+        greenLight.classList.add("active");
+
+        signalName.textContent =
+          "Green";
+
+        timer.textContent =
+          formatTime(remaining);
+
+        timingInfo.textContent =
+          "Yellow at " +
+          formatTime(yellowAt) +
+          " · Red at " +
+          formatTime(redAt);
+
+      }
+
+
+      /* Yellow */
+
+      else if (elapsedSeconds < redAt) {
+
+        document.body.classList.add(
+          "state-yellow"
+        );
+
+        yellowLight.classList.add("active");
+
+        signalName.textContent =
+          "Yellow";
+
+        timer.textContent =
+          formatTime(remaining);
+
+        timingInfo.textContent =
+          "Red at " +
+          formatTime(redAt);
+
+      }
+
+
+      /* Red */
+
+      else {
+
+        document.body.classList.add(
+          "state-red"
+        );
+
+        redLight.classList.add("active");
+
+        signalName.textContent =
+          "Red";
+
+        timer.textContent =
+          "00:00";
+
+        timingInfo.textContent =
+          "Time limit reached";
+
+        if (elapsedSeconds > redAt) {
+
+          document.body.classList.remove(
+            "state-red"
+          );
+
+          document.body.classList.add(
+            "state-overtime"
+          );
+
+          timer.classList.add(
+            "overtime"
+          );
+
+          signalName.textContent =
+            "Overtime";
+
+          timer.textContent =
+            "+" +
+            formatTime(
+              elapsedSeconds - redAt
+            );
+
+          timingInfo.textContent =
+            "Over the red time";
+        }
+      }
+
+
+      /* Speaker */
+
+      const speaker =
+        speakerInput.value.trim();
+
+      speakerName.textContent =
+        speaker;
+
+      document.title =
+        speaker
+          ? speaker + " | Toastmasters Timer"
+          : "Toastmasters Meeting Timer";
+    }
+
 
     function tick() {
 
-      remainingSeconds--;
+      elapsedSeconds++;
 
       updateDisplay();
-
-      if (remainingSeconds <= 0) {
-        stopTimer();
-      }
     }
+
 
     function startTimer() {
 
       if (running) {
-        stopTimer();
+
+        running = false;
+
+        clearInterval(interval);
+
+        interval = null;
+
+        startButton.textContent =
+          "Resume";
+
         return;
       }
 
       running = true;
-      startPauseButton.textContent = "Pause";
 
-      interval = setInterval(tick, 1000);
+      startButton.textContent =
+        "Pause";
+
+      interval =
+        setInterval(
+          tick,
+          1000
+        );
     }
+
 
     function stopTimer() {
 
       running = false;
 
-      startPauseButton.textContent = "Start";
+      clearInterval(interval);
 
-      if (interval) {
-        clearInterval(interval);
-        interval = null;
-      }
+      interval = null;
+
+      startButton.textContent =
+        "Start";
     }
+
 
     function resetTimer() {
 
       stopTimer();
 
-      remainingSeconds = totalSeconds;
+      elapsedSeconds = 0;
 
       updateDisplay();
     }
 
-    function setTimer(minimum, maximum) {
 
-      stopTimer();
+    function applyTiming(
+      green,
+      yellow,
+      red
+    ) {
 
-      minSeconds = minimum * 60;
-      maxSeconds = maximum * 60;
+      if (
+        green < 0 ||
+        yellow <= green ||
+        red <= yellow
+      ) {
 
-      totalSeconds = minSeconds;
-      remainingSeconds = totalSeconds;
-
-      updateDisplay();
-    }
-
-    presets.forEach((preset) => {
-
-      preset.addEventListener("click", () => {
-
-        presets.forEach((button) =>
-          button.classList.remove("active")
+        alert(
+          "Please make sure Green < Yellow < Red."
         );
 
-        preset.classList.add("active");
-
-        const min = Number(preset.dataset.min);
-        const max = Number(preset.dataset.max);
-
-        setTimer(min, max);
-
-      });
-
-    });
-
-    startPauseButton.addEventListener("click", startTimer);
-
-    resetButton.addEventListener("click", resetTimer);
-
-    plus30Button.addEventListener("click", () => {
-
-      remainingSeconds += 30;
-
-      updateDisplay();
-
-    });
-
-    minus30Button.addEventListener("click", () => {
-
-      remainingSeconds = Math.max(
-        0,
-        remainingSeconds - 30
-      );
-
-      updateDisplay();
-
-    });
-
-    clearSpeakerButton.addEventListener("click", () => {
-      speakerInput.value = "";
-      speakerInput.focus();
-    });
-
-    fullscreenButton.addEventListener("click", async () => {
-
-      try {
-
-        if (!document.fullscreenElement) {
-          await document.documentElement.requestFullscreen();
-          fullscreenButton.textContent = "Exit Fullscreen";
-        } else {
-          await document.exitFullscreen();
-          fullscreenButton.textContent = "Fullscreen";
-        }
-
-      } catch (error) {
-        console.log("Fullscreen unavailable:", error);
-      }
-
-    });
-
-    applyCustomButton.addEventListener("click", () => {
-
-      const minutes = Math.max(
-        0,
-        Number(customMin.value) || 0
-      );
-
-      const seconds = Math.min(
-        59,
-        Math.max(0, Number(customSec.value) || 0)
-      );
-
-      const total = minutes * 60 + seconds;
-
-      if (total <= 0) {
-        alert("Please enter a time greater than zero.");
         return;
       }
 
-      presets.forEach((button) =>
-        button.classList.remove("active")
-      );
+      greenAt = green;
+      yellowAt = yellow;
+      redAt = red;
 
-      stopTimer();
+      resetTimer();
+    }
 
-      minSeconds = total;
-      maxSeconds = total;
 
-      totalSeconds = total;
-      remainingSeconds = total;
+    /* Presets */
 
-      updateDisplay();
+    presets.forEach(
+      (preset) => {
 
-    });
+        preset.addEventListener(
+          "click",
+          () => {
 
-    document.addEventListener("fullscreenchange", () => {
+            presets.forEach(
+              (button) =>
+                button.classList.remove(
+                  "active"
+                )
+            );
 
-      fullscreenButton.textContent =
-        document.fullscreenElement
-          ? "Exit Fullscreen"
-          : "Fullscreen";
+            preset.classList.add(
+              "active"
+            );
 
-    });
+            applyTiming(
+              Number(
+                preset.dataset.green
+              ),
+              Number(
+                preset.dataset.yellow
+              ),
+              Number(
+                preset.dataset.red
+              )
+            );
 
-    speakerInput.addEventListener("input", () => {
+          }
+        );
 
-      const name = speakerInput.value.trim();
-
-      if (name) {
-        document.querySelector(".brand-bar p").textContent =
-          name + " • Jaipur Speakers Toastmasters Club";
-      } else {
-        document.querySelector(".brand-bar p").textContent =
-          "Jaipur Speakers Toastmasters Club";
       }
+    );
 
-    });
 
-    // Initial state
-    setTimer(1, 2);
+    /* Buttons */
+
+    startButton.addEventListener(
+      "click",
+      startTimer
+    );
+
+    stopButton.addEventListener(
+      "click",
+      stopTimer
+    );
+
+    resetButton.addEventListener(
+      "click",
+      resetTimer
+    );
+
+
+    plus30Button.addEventListener(
+      "click",
+      () => {
+
+        elapsedSeconds =
+          Math.max(
+            0,
+            elapsedSeconds - 30
+          );
+
+        updateDisplay();
+
+      }
+    );
+
+
+    minus30Button.addEventListener(
+      "click",
+      () => {
+
+        elapsedSeconds += 30;
+
+        updateDisplay();
+
+      }
+    );
+
+
+    /* Fullscreen */
+
+    fullscreenButton.addEventListener(
+      "click",
+      async () => {
+
+        try {
+
+          if (
+            !document.fullscreenElement
+          ) {
+
+            await document.documentElement
+              .requestFullscreen();
+
+          } else {
+
+            await document.exitFullscreen();
+
+          }
+
+        } catch (error) {
+
+          console.log(
+            "Fullscreen unavailable:",
+            error
+          );
+        }
+
+      }
+    );
+
+
+    document.addEventListener(
+      "fullscreenchange",
+      () => {
+
+        const active =
+          Boolean(
+            document.fullscreenElement
+          );
+
+        document.body.classList.toggle(
+          "fullscreen",
+          active
+        );
+
+        fullscreenButton.textContent =
+          active
+            ? "Exit Fullscreen"
+            : "Fullscreen";
+
+      }
+    );
+
+
+    /* Speaker name */
+
+    speakerInput.addEventListener(
+      "input",
+      updateDisplay
+    );
+
+
+    /* Custom timing */
+
+    applyCustom.addEventListener(
+      "click",
+      () => {
+
+        const green =
+          Number(
+            customGreen.value
+          ) * 60;
+
+        const yellow =
+          Number(
+            customYellow.value
+          ) * 60;
+
+        const red =
+          Number(
+            customRed.value
+          ) * 60;
+
+        presets.forEach(
+          (button) =>
+            button.classList.remove(
+              "active"
+            )
+        );
+
+        applyTiming(
+          green,
+          yellow,
+          red
+        );
+
+      }
+    );
+
+
+    /* Keyboard shortcuts */
+
+    document.addEventListener(
+      "keydown",
+      (event) => {
+
+        if (
+          event.target.tagName === "INPUT"
+        ) {
+          return;
+        }
+
+        switch (event.code) {
+
+          case "Space":
+            event.preventDefault();
+            startTimer();
+            break;
+
+          case "KeyR":
+            resetTimer();
+            break;
+
+          case "KeyF":
+            fullscreenButton.click();
+            break;
+
+        }
+
+      }
+    );
+
+
+    /* Initial state */
+
+    applyTiming(
+      60,
+      90,
+      120
+    );
+
   </script>
 
 </body>
